@@ -1,0 +1,69 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.Work_PageProg.PageTableProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog.Work_PageProg"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageTableProduct"
+      Loaded="Page_Loaded" KeyDown="KeyControl"  >
+
+
+
+    <Grid x:Name="GridWindow" Background="#FF424242">
+
+        <TextBlock x:Name="InfoTextBlock" Grid.Row="1" Text="Таблица продуктов пустая или не найдена" Foreground="White" FontSize="24" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        
+        <DataGrid x:Name="ProductsGrid"
+                 
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding}"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  IsReadOnly="True"
+                  Background="#FF2D2D2D"
+                  Foreground="White"
+                  BorderBrush="#FF404040"
+                  RowBackground="#FF2D2D2D"
+                  AlternatingRowBackground="#FF3D3D3D"
+                  GridLinesVisibility="Horizontal"
+                  HorizontalGridLinesBrush="#FF404040"
+                  VerticalGridLinesBrush="#FF404040"
+                  SelectionChanged="ProductsGrid_SelectionChanged">
+
+            <DataGrid.Columns>
+            
+               
+            </DataGrid.Columns>
+
+            <!-- Стили для заголовков -->
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#FF1A1A1A"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Height" Value="35"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+
+            <!-- Стили для строк -->
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF505050"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FFCC0079"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+        </DataGrid>
+    </Grid>
+</Page>

@@ -1,0 +1,12 @@
+﻿<Window x:Name="MainWindow1" x:Class="Model_Accounting_Warehouse.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Model_Accounting_Warehouse"
+        mc:Ignorable="d"
+        Title="Модуль Контроля Склада" Height="450" Width="800" Icon="/MAWIcon.png" Background="#FF1A1A1A">
+    <Grid>
+        <Frame x:Name="PageControl" Source="/Page_Prog/PageLoad.xaml" MouseMove="MouseMoveModul" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

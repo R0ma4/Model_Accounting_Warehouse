@@ -1,0 +1,15 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.Work_PageProg.Page404Error"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog.Work_PageProg"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page404Error">
+
+    <Grid x:Name="GridWindow" Background="#FF2E2E2E">
+        <TextBlock Text="404" Foreground="White" Margin="227,52,235,304" TextAlignment="Center" FontSize="72" FontFamily="Bahnschrift SemiLight SemiCondensed"/>
+        <TextBlock Text="Данная страница не найдена" Foreground="White" Margin="5,206,2,22" TextAlignment="Center" FontSize="30" FontFamily="Bahnschrift SemiLight SemiCondensed" TextWrapping="Wrap"/>
+    </Grid>
+</Page>

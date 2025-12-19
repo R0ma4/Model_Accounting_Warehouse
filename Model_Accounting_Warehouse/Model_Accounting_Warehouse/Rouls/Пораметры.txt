@@ -1,0 +1,34 @@
+[Window]
+
+---- ОСНОВНЫЕ 
+WINDOW_HEIGHT = 700 - высота окна программы 
+WINDOW_WIDTH = 1080 - ширена окна программы 
+FONEREGISTER = false - разрешает / заприщяет перевод работы в трей или в фоне, false - как поумолчанию заприщяет, true - как разришение
+DROP_TICK = 150 - На каком тике сбросить работу программы
+TIME_TICK = 3000 - время обновления Тика в милисекундах 
+
+------ Второстепенные 
+VERSION = 0.1+ - устонавлевает границу версии программы, понадаметься если нужно отключить контроль версий.
+ERROR_PROCCES_CLOUSE = true - закрывать программу в случай ошибки true - как да, все остольные пораметры будут восприменяться как false
+TOPMOST  = false программа всегда открыта поверх всех окон false как по умолчанию
+
+[Rouls]
+---- ОСНОВНЫЕ 
+IMAGE = 'Img' - Наиминование папки где хроняться изображения
+MAIN_PAGE = 'Load' - устонавлевает страницу при открытии программы. (P.S. Пораметор 'Los' - Не возможно изменить, так-как он являеться заглушкой и имеет порядковый номер 0, а данный пораметор установит страницу для 1 )
+------ Второстепенные 
+MAIN_CONFIG_ROULS = 'Main_Config.ini' - Наиминование основного файла настроек конфигурации, если пораметор не назначен, то будет считать основным данный файл
+TIMEOUT_EXIT = false - бездействия - значит выход с программы - false как по умолчанию - и откроет основную страницу, true - закроет программу
+[File]
+---- ОСНОВНЫЕ 
+BlakList = 'BlackList.json' 
+DATA_BASE = 'Programm.yami'
+------ Второстепенные 
+DIRECTORI_MAIN = standart  - Принемает 2 пораметра standart  - как по умолчанию и имеет стандартные настройки, и путь к новой папке правил, как обновлённый список правил
+[Icone]
+IMAGE_LOAD_PROGRAMM = 'Imag_error_db_conect.png'
+ERROR_DATA_BASE_CONECT = 'Imag_error_db_conect.png'
+ERROR_INTERNET_CONECT = 'Imag_error_int_conect.png'
+ERROR_DATA_BASE_TABLE_CONECT = 'Imag_error_dbtab_conect.png'
+DATA_BASE_CONECT = 'Imag_db_conect.png'
+STANDART_PROFIL = 'StandaetHemanAvatar.png'

@@ -1,0 +1,56 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.PageWork"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageWork">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="420*"/>
+        </Grid.RowDefinitions>
+
+        <Menu x:Name="MenuPanel" Grid.Row="0">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать новый модуль"/>
+                <MenuItem Header="Сохронить"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Импортировать"/>
+                <MenuItem Header="Экспортировать"/>
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem Header="Создать новый модуль"/>
+                <MenuItem Header="Сохронить"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Импортировать"/>
+                <MenuItem Header="Экспортировать"/>
+            </MenuItem>
+            <MenuItem Header="Программа">
+                <MenuItem x:Name="ExitProgramm" Header="Выход" Click="ClickButtonEvert" />
+            </MenuItem>
+            <MenuItem Header="Товары">
+                <MenuItem x:Name="CreateNewProduct" Header="Создать новый товар" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="RedactProduct" Header="Редактировать созданный товар" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="UpdateProduct" Header="Обновить список товара" Click="ClickButtonEvert"/>
+                <MenuItem Header="Заказать новую поставку для товара"/>
+                <MenuItem Header="Создать отчёт о ведении товара"/>
+                <MenuItem Header="Открыть отчёт о ведении товара"/>
+            </MenuItem>
+            <MenuItem Header="Организация" >
+                <MenuItem Header="Переподключиться к Базе Данных" Click="ClickButtonEvert"/>
+                <MenuItem Header="Сбросить потключение к базе данных" Click="ClickButtonEvert"/>
+                <MenuItem Header="Подключиться к базе данных" Click="ClickButtonEvert"/>
+                <MenuItem Header="Создать перепесь с уже сущесвующей Базы данных" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="AddEmployeeInDataBase"  Header="Добавить нового сотрудника" Click="ClickButtonEvert"/>
+                <MenuItem Header="Убрать сотрудника" Click="ClickButtonEvert"/>
+            </MenuItem>
+        </Menu>
+        
+        <Frame x:Name="WorkPage" Grid.Row = "1" NavigationUIVisibility="Hidden" Background="Black" Source="/Page_Prog/Work PageProg/PageTableProduct.xaml"  />
+
+    </Grid>
+</Page>
