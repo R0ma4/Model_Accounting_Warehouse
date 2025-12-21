@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Policy;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,7 +15,10 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using System.Xml.Linq;
+// Пи пу пи пу пи ) 
+using System.Net;
+using System.Net.Http;
 
 namespace Model_Accounting_Warehouse.Modul
 {
@@ -44,7 +50,26 @@ namespace Model_Accounting_Warehouse.Modul
                 "Разшифрованный Пороль: " + DESHIFT("Password", "Admin123123")
                 );
         }
+        public async Task<string> GetRegionByIPAsync()
+        {
+            string Region = "ru";
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string response = await client.GetStringAsync("http://ip-api.com/json/");
+                    // var json = JObject.Parse(response);
 
+                    // return json["country"]?.ToString() + ", " + json["regionName"]?.ToString();
+                    // // Пример: "Russia, Moscow"
+                    return Region;
+                }
+            }
+            catch
+            {
+                return "Не удалось определить регион";
+            }
+        }
         #region Допка Топка 
 
         private string GetPositionFromComboBoxIndex(int index)
@@ -121,9 +146,82 @@ namespace Model_Accounting_Warehouse.Modul
         }
 
         #endregion
+        // В классе API_MENEGER_DATABASE добавьте:
+        public List<Supplier> GetSuppliersList()
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                return connection.Query<Supplier>("SELECT * FROM Supplier").ToList();
+            }
+        }
+        public ComboBox GetSupplier()
+        {
+
+            ComboBox comboBox = new ComboBox();
 
 
-        public void CreateUser(string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "")
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+
+            Console.WriteLine("НАЧАЛО РАБОТЫ - GetSupplier()");
+            try
+            {
+                Console.WriteLine("Гуди Гуди");
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    Console.WriteLine("А Я ТУТ");
+                    connection.Open();
+
+                    var suppliers = connection.Query<Supplier>("SELECT * FROM Supplier");
+
+                    if (suppliers == null || !suppliers.Any())
+                    {
+                        comboBox.Items.Add("Нет поставщиков");
+                        comboBox.IsEnabled = false;
+                    }
+                    else
+                    {
+                        foreach (var supplier in suppliers)
+                        {
+                            comboBox.Items.Add($"{supplier.Id}| {supplier.Supplier_Name}");
+                            Console.WriteLine($"Загружено поставщиков добавленно : {supplier.Id}| {supplier.Supplier_Name}");
+                        }
+                        Console.WriteLine($"Загружено поставщиков: {suppliers.Count()}");
+                    }
+                    return comboBox;
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                comboBox.Items.Add($"Ошибка БД: {sqlEx.Message}");
+                comboBox.IsEnabled = false;
+                Console.WriteLine($"SQL Ошибка: {sqlEx.Message}");
+            }
+            catch (Exception ex)
+            {
+                comboBox.Items.Add("Ошибка загрузки поставщиков");
+                comboBox.IsEnabled = false;
+                Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+            comboBox.Items.Add("Да я");
+            return comboBox;
+        }
+
+        public int AddProduct()
+        {
+            return 0;
+        }
+
+        public int AddNewSupplier(string Name_Supplier) 
+        {
+            return 0; 
+        }
+
+        /// <summary>
+        /// Полностью сбрасывает базу данных
+        /// </summary>
+        public void DropDataBase() 
         {
             try
             {
@@ -131,46 +229,195 @@ namespace Model_Accounting_Warehouse.Modul
 
                 using (var connection = new SqlConnection(connectionString))
                 {
+                    try
+                    {
+                        connection.Open();
+
+                        var insertTableUserQuery = @"
+                    DELETE FROM LogTable;
+                    DELETE FROM Products;
+                    DELETE FROM Supplier;
+                    DELETE FROM UserInfo;
+                    DELETE FROM EmtityPrise;
+                    DELETE FROM ShopInfo;";
+
+                        connection.Execute(insertTableUserQuery);
+
+                    }
+                    catch
+                    {
+
+                    }
+
+
+                }
+            }
+            catch (SqlException ex) 
+            {
+                MessegeBox(ex.Message, "Ошибка!");
+            }
+        }
+        /// <summary>
+        /// Создание Магазина
+        /// </summary>
+        /// <param name="_NameShop"></param>
+        /// <param name="_Street"></param>
+        /// <param name="_INN"></param>
+        /// <param name="_KPP"></param>
+        /// <param name="_BankAccount"></param>
+        /// <param name="_BankName"></param>
+        /// <param name="_BIK"></param>
+        /// <param name="_LegalAddress"></param>
+        /// <param name="_Phone"></param>
+        /// <param name="_Email"></param>
+        /// <returns></returns>
+        public int CreateShop(string _NameShop, string _Street, string _INN, string _KPP, string _BankAccount, string _BankName, string _BIK, string _LegalAddress, string _Phone, string _Email)
+        {
+
+            try
+            {
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        // Валидация ИНН
+                        Regex innRegex = new Regex(@"^\d{10}$|^\d{12}$");
+                        // Валидация номера счета
+                        Regex accountRegex = new Regex(@"^\d{20}$");
+                        // Валидация КПП
+                        Regex kppRegex = new Regex(@"^\d{9}$");
+                        // Валидация БИК
+                        Regex bikRegex = new Regex(@"^\d{9}$");
+                        // Валидация телефона
+                        Regex phoneRegex = new Regex(@"^(\+7|8|\+375|7)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}$");
+                        // Валидация email
+                        Regex emailRegex = new Regex(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", RegexOptions.IgnoreCase);
+                        if (!innRegex.IsMatch(_INN.Trim())) { return - 6;}
+
+                       
+                        if (!kppRegex.IsMatch(_KPP.Trim())) { return - 5;}
+
+                        //  if (!accountRegex.IsMatch(_BankName.Trim()))  {   return - 4; }
+
+
+                        if (!bikRegex.IsMatch(_BIK.Trim())) { return - 3; }
+
+
+                        if (!phoneRegex.IsMatch(_Phone.Trim()))  { return - 2;}
+
+
+                        if (!emailRegex.IsMatch(_Email.Trim())) { return - 1; }
+
+                        connection.Open();
+                        var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM ShopInfo";
+                        int maxId = connection.ExecuteScalar<int>(maxIdQuery);
+                        int newId = maxId + 1;
+
+                        var insertTableUserQuery = @"
+                 INSERT INTO ShopInfo (Id, Street, Sales, INN, KPP, BankAccount, BankName, BIK, LegalAddress, Phone, Email)
+                 VALUES 
+                 (@Id, @Street, @Sales,   @INN, @KPP, @BankAccount,  @BankName, @BIK,@LegalAddress, @Phone, @Email)";
+
+                        connection.Execute(insertTableUserQuery, new 
+                        {
+                            Id = newId,
+                            Street = _Street,
+                            Sales = 0, // По умолчанию 0 - так как при создании магазин не мог ничего заработать
+                            INN = _INN,
+                            KPP = _KPP,
+                            BankAccount = _BankAccount,
+                            BankName = _BankName,
+                            BIK = _BIK,
+                            LegalAddress = _LegalAddress,
+                            Phone = _Phone,
+                            Email = _Email
+                        });
+                        return 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"============================================\n{ex.Message} | {ex.StackTrace} | {ex.InnerException}");
+
+                        return 0;
+                    }
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessegeBox(ex.Message, "Ошибка!");
+                return 0;
+            }
+        }
+        // ЧТО-БЫ УДАЛИТЬ / ЗАКРЫТЬ МАГАЗИН - НУЖНО БУДЕТ СБРОСИТЬ КАК И СКАЛАД ТАК И ВСЕХ СОТРУДНИКОВ!
+        public void DropShop(int IdShop) // IdShop - Назначаеться из выподающего списка.
+        {
+            try
+            {
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        var insertTableUserQuery = @"
+                    DELETE FROM LogTable WHERE Info_Shop = @ID;
+
+                    DELETE FROM Products WHERE ShopInfor = @ID;
+
+                    DELETE FROM ShopInfo WHERE Id = @ID;";
+
+                        connection.Execute(insertTableUserQuery, new { ID = IdShop });
+
+                    }
+                    catch
+                    {
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex) 
+            {
+
+            }
+            }
+
+        /// <summary>
+        /// Увольняет Пользователя по паспорту
+        /// </summary>
+        public int Fire(string Namber_Pasport)
+        {
+            try
+            {
+                Regex DateFormatRegex =  new Regex(@"^\d{2} \d{2} \d{4}$", RegexOptions.Compiled); 
+
+                if(!DateFormatRegex.IsMatch(Namber_Pasport.Trim())) { return -1;  }
+
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
                     connection.Open();
 
+                    var Shin = @"SELECT Pasport FROM UserInfo where Pasport = @Pasport";
 
-                    var LogInTry = connection.Query<TableUser>("SELECT UserName FROM TableUser where UserName = @UserName", new { UserName = LogIn });
-                    if (LogInTry.Count() > 0) { MessegeBox("Данный Логин уже сущесвует!", "Ошибка при создании"); return; }
+                   bool Corrects = connection.ExecuteScalar<int>(Shin, new { Pasport = Namber_Pasport }) == 1;
 
-                    var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM TableInfo";
-                    int maxId = connection.ExecuteScalar<int>(maxIdQuery);
-                    int newId = maxId + 1;
-
-                    var insertTableInfoQuery = @"
-                INSERT INTO TableInfo (Id, UserPost, EmployeeName, EmployeeSurname, EmployeeMiddleName)
-                VALUES (@Id, @UserPost, @EmployeeName, @EmployeeSurname, @EmployeeMiddleName)";
-
-                    string userPost = GetPositionFromComboBoxIndex(PositionComboBox);
-
-                    connection.Execute(insertTableInfoQuery, new
+                    if(Corrects) 
                     {
-                        Id = newId,
-                        UserPost = userPost,
-                        EmployeeName = UserName.Trim(),
-                        EmployeeSurname = UsetSname.Trim(),
-                        EmployeeMiddleName = SMNamse.Trim()
-                    });
+                        var insertTableUserQuery = @"DELETE FROM UserInfo where Pasport = @Pasport";
 
-                    var insertTableUserQuery = @"
-                INSERT INTO TableUser (UserName, UserPosword, ThisUser)
-                VALUES (@UserName, @UserPosword, @ThisUser)";
-
-                    string password = SHIFT("Password", Password);
-
-                    connection.Execute(insertTableUserQuery, new
-                    {
-                        UserName = LogIn.Trim(),
-                        UserPosword = password,
-                        ThisUser = newId
-                    });
-
-                    MessageBox.Show("Новый сотрудник был успешно добавлен!", "Успешно!",
-                                   MessageBoxButton.OK, MessageBoxImage.Information);
+                        var Correct = connection.Execute(insertTableUserQuery, new { Pasport = Namber_Pasport });
+                        return 1;
+                    }
+                    else {  return -1; }
                 }
             }
             catch (SqlException ex)
@@ -179,7 +426,107 @@ namespace Model_Accounting_Warehouse.Modul
             }
             catch (Exception ex)
             {
-                MessegeBox(ex.Message, "Ошибка!");
+                MessegeBox(ex.Message+ ex.StackTrace, "Ошибка!");
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Создание пользователя
+        /// </summary>
+        /// <param name="Docement"></param>
+        /// <param name="LogIn"></param>
+        /// <param name="Password"></param>
+        /// <param name="PositionComboBox"></param>
+        /// <param name="UserName"></param>
+        /// <param name="UsetSname"></param>
+        /// <param name="SMNamse"></param>
+        /// <param name="Are"></param>
+        public void CreateUser(string Docement, string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "", int Are = 20)
+        {
+            try
+            {
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try 
+                    {
+
+                        connection.Open();
+
+
+                        var LogInTry = connection.Query<LogTable>("SELECT Log_In FROM LogTable where Log_In = @UserName", new { UserName = LogIn });
+                        if (LogInTry.Count() > 0) { MessegeBox("Данный Логин уже сущесвует!", "Ошибка при создании"); return; }
+
+                        var ChechDocument = @"SELECT Pasport FROM UserInfo where Pasport = @Pasport";
+                        int ChechDocumentId = connection.ExecuteScalar<int>(ChechDocument,new { Pasport = Docement });
+                        if(ChechDocumentId != 0)
+                        {
+                            MessageBox.Show("Данный пасторт уже введён в базу данных сети", "Отказанно",
+                                       MessageBoxButton.OK, MessageBoxImage.Error); return; }
+
+                        var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM UserInfo";
+                        int maxId = connection.ExecuteScalar<int>(maxIdQuery);
+                        int newId = maxId + 1;
+
+                        var insertTableInfoQuery = @"
+                INSERT INTO UserInfo (Id, Avotar, Post, Employee_Name, Last_Name, Patronymic, Age, Pasport)
+                VALUES (@Id,@Avotar, @Post, @Employee_Name, @Last_Name, @Patronymic, @Age, @Pasport)";
+
+                        string userPost = GetPositionFromComboBoxIndex(PositionComboBox);
+
+                        connection.Execute(insertTableInfoQuery, new
+                        {
+                            Id = newId,
+                            Post = userPost,
+                            Avotar = "C:\\Users\\Asus\\Downloads\\avatardefault_92824.png",
+                            Employee_Name = UserName.Trim(),
+                            Last_Name = UsetSname.Trim(),
+                            Patronymic = SMNamse.Trim(),
+                            Age = Are,
+                            Pasport = Docement
+                        });
+
+                        var insertTableUserQuery = @"
+                INSERT INTO LogTable (Log_In, Password_User, UserInfoId,Info_Shop)
+                VALUES (@Log_In, @Password_User, @UserInfoId, @Info_Shop)";
+
+                        string password = SHIFT("Password", Password);
+
+                        connection.Execute(insertTableUserQuery, new
+                        {
+                            Log_In = LogIn.Trim(),
+                            Password_User = password,
+                            UserInfoId = newId,
+                            Info_Shop = 1 // Как стандартый индекс
+                        });
+
+                        MessageBox.Show("Новый сотрудник был успешно добавлен!", "Успешно!",
+                                       MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (SqlException ex)
+                    {
+
+                        var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM UserInfo";
+
+                        MessegeBox(ex.Message + ex.StackTrace, "Ошибка!");
+                        var insertTableUserQuery = @"DELETE FROM TableUser WHERE Id = @id;";
+                        connection.Execute(insertTableUserQuery, new
+                        {
+                            Id = connection.ExecuteScalar<int>(maxIdQuery)
+
+                    });
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessegeBox(ex.Message + ex.StackTrace, "Ошибка!");
+            }
+            catch (Exception ex)
+            {
+                MessegeBox(ex.Message+ ex.StackTrace, "Ошибка!");
             }
         }
 
@@ -209,16 +556,16 @@ namespace Model_Accounting_Warehouse.Modul
 
                 
                 bool loginExists = connection.ExecuteScalar<int>(
-                    "SELECT COUNT(*) FROM TableUser WHERE UserName = @UserName",
+                    "SELECT COUNT(*) FROM LogTable WHERE Log_In = @UserName",
                     new { UserName = Login }) > 0;
 
                 bool passwordCorrect = connection.ExecuteScalar<int>(
-                    "SELECT COUNT(*) FROM TableUser WHERE UserName = @UserName AND UserPosword = @UserPosword",
+                    "SELECT COUNT(*) FROM LogTable li WHERE li.Log_In  = @UserName AND li.Password_User = @UserPosword",
                     new { UserName = Login, UserPosword = new_password }) > 0;
 
                 // Получаем данные пользователя
-                var ReadComand = connection.Query<TableUser>(
-                    "SELECT tu.UserName, tu.UserPosword, tu.Id FROM TableUser as tu WHERE UserName = @UserName AND UserPosword = @UserPosword",
+                var ReadComand = connection.Query<LogTable>(
+                    "SELECT tu.Log_In, tu.Password_User, tu.Id FROM LogTable tu WHERE tu.Log_In = @UserName AND tu.Password_User = @UserPosword",
                     new { UserName = Login, UserPosword = new_password });
 
                 Console.WriteLine("Отладочная информация:");
@@ -231,18 +578,19 @@ namespace Model_Accounting_Warehouse.Modul
                     foreach (var item in ReadComand)
                     {
                         Console.WriteLine($"Инфомация:");
-                        Console.WriteLine($"Найден: {item.UserName}, ID = {item.ThisUser}");
+                        Console.WriteLine($"Найден: {item.Log_In}, ID = {item.UserInfoId}");
                         Console.WriteLine($"Введенный пароль: {password}");
                         Console.WriteLine($"Зашифрованный: {new_password}");
-                        Console.WriteLine($"Пароль из БД: {item.UserPosword}");
+                        Console.WriteLine($"Пароль из БД: {item.Password_User}");
 
-                        var UserInfo = connection.QueryFirstOrDefault<TableInfo>(
-                            "SELECT * FROM TableInfo Where Id = @Id",
-                            new { Id = item.ThisUser});
+                        var UserInfo = connection.QueryFirstOrDefault<UserInfo>(
+                            "SELECT ui.Last_Name FROM UserInfo ui WHERE ui.Id = @Id",
+                            new { Id = item.UserInfoId});
 
                         if (UserInfo != null)
                         {
-                            NameUserDiolog = $"{UserInfo.EmployeeSurname}. {UserInfo.EmployeeName[0]}. {UserInfo.EmployeeMiddleName[0]}.";
+                            NameUserDiolog = $"{UserInfo.Last_Name}. {UserInfo.Employee_Name[0]}. {UserInfo.Patronymic[0]}.";
+                         
                         }
                     }
 
@@ -269,59 +617,89 @@ namespace Model_Accounting_Warehouse.Modul
             }
         }
 
-
+        /// <summary>
+        /// Пость пользователя
+        /// </summary>
+        /// <param name="Login"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public string UserPost(string Login, string password)
         {
-
-            var conections = $"Server={NameServers};DataBase={NameBasaData};Trusted_connection=True;TrustServerCertificate=True;";
-            string new_password = SHIFT("Password", password);
-
-            using (SqlConnection connection = new SqlConnection(conections))
+            try
             {
-                string Post = null;
-                connection.Open();
-                string NameUserDiolog = string.Empty;
+                var connectionString = $"Server={NameServers};DataBase={NameBasaData};Trusted_Connection=True;TrustServerCertificate=True;";
+                string new_password = SHIFT("Password", password);
 
-
-                bool loginExists = connection.ExecuteScalar<int>( "SELECT COUNT(*) FROM TableUser WHERE UserName = @UserName", new { UserName = Login }) > 0;
-
-                bool passwordCorrect = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM TableUser WHERE UserName = @UserName AND UserPosword = @UserPosword", new { UserName = Login, UserPosword = new_password }) > 0;
-
-                // Получаем данные пользователя
-                var ReadComand = connection.Query<TableUser>("SELECT tu.UserName, tu.UserPosword, tu.Id FROM TableUser as tu WHERE UserName = @UserName AND UserPosword = @UserPosword", new { UserName = Login, UserPosword = new_password });
-
-                Console.WriteLine("Отладочная информация:");
-                Console.WriteLine($"loginExists: {loginExists}");
-                Console.WriteLine($"passwordCorrect: {passwordCorrect}");
-                Console.WriteLine($"Количество найденных пользователей: {ReadComand.Count()}");
-
-                string IDUSerInfo = null;
-                if (loginExists && passwordCorrect)
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    foreach (var item in ReadComand)
+                    connection.Open();
+
+                    // ВАРИАНТ 1: Через JOIN (рекомендуется)
+                    string post = connection.QueryFirstOrDefault<string>(@"
+                SELECT ui.Post 
+                FROM LogTable lt
+                INNER JOIN UserInfo ui ON lt.UserInfoId = ui.Id
+                WHERE lt.Log_In = @UserName AND lt.Password_User = @Password",
+                        new
+                        {
+                            UserName = Login,
+                            Password = new_password
+                        });
+
+                    if (!string.IsNullOrEmpty(post))
                     {
-
-                        IDUSerInfo = connection.QueryFirstOrDefault<string>("SELECT ti.UserPost FROM TableInfo ti  WHERE ti.Id = (SELECT tu.ThisUser FROM TableUser tu WHERE tu.UserName = @UserName )", new { UserName = item.UserName });
+                        Console.WriteLine($"Должность пользователя {Login}: {post}");
+                        return post;
                     }
-                    if (IDUSerInfo.ToString() != null) {
-                        MessageBox.Show($"Вы вошли как - {IDUSerInfo}",null,MessageBoxButton.OK);
-                        return IDUSerInfo;  }
-                    else { MessageBox.Show("Гость - как по умолчанию"); }
-                        connection.Close();
-                    return null;
+
+                    // ВАРИАНТ 2: Если JOIN не сработал, проверяем шаг за шагом
+                    Console.WriteLine("JOIN не дал результата, проверяем вручную...");
+
+                    // 1. Проверяем, есть ли пользователь в LogTable
+                    var logTableUser = connection.QueryFirstOrDefault<dynamic>(
+                        "SELECT Id, UserInfoId FROM LogTable WHERE Log_In = @UserName AND Password_User = @Password",
+                        new { UserName = Login, Password = new_password });
+
+                    if (logTableUser == null)
+                    {
+                        Console.WriteLine($"❌ Пользователь {Login} не найден в LogTable или неверный пароль");
+                        MessageBox.Show("Неверный логин или пароль!", "Ошибка",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
+                        return "Гость";
+                    }
+
+                    Console.WriteLine($"✅ Найден в LogTable: ID={logTableUser.Id}, UserInfoId={logTableUser.UserInfoId}");
+
+                    // 2. Проверяем UserInfoId
+                    if (logTableUser.UserInfoId == null)
+                    {
+                        Console.WriteLine($"❌ У пользователя {Login} не заполнен UserInfoId");
+                        return "Гость";
+                    }
+
+                    // 3. Получаем должность из UserInfo
+                    string userPost = connection.QueryFirstOrDefault<string>(
+                        "SELECT Post FROM UserInfo WHERE Id = @UserInfoId",
+                        new { UserInfoId = logTableUser.UserInfoId });
+
+                    if (!string.IsNullOrEmpty(userPost))
+                    {
+                        Console.WriteLine($"✅ Должность из UserInfo: {userPost}");
+                        return userPost;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"❌ Не найдена должность для UserInfoId={logTableUser.UserInfoId}");
+                        return "Гость";
+                    }
                 }
-                else if (loginExists && !passwordCorrect)
-                {
-                    return null;
-                }
-                else if (!loginExists)
-                {
-                    return null;
-                }
-                else
-                {
-                    return null;
-                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Ошибка в UserPost: {ex.Message}");
+                MessageBox.Show($"Ошибка получения прав: {ex.Message}", "Ошибка",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+                return "Гость";
             }
         }
         /// <summary>
@@ -363,6 +741,9 @@ namespace Model_Accounting_Warehouse.Modul
             };
         }
 
+
+
+        #region Обработка данных с Продукции
         private DataGridTextColumn Entity(string type, string columnNameSQL, string columnNameProgramm) 
         {
             switch (type) 
@@ -378,7 +759,6 @@ namespace Model_Accounting_Warehouse.Modul
                     };
             }
         }
-
         protected DataGridTextColumn RegisterIcone(string Path, string columnNameProgramm) 
         {
             try
@@ -387,7 +767,7 @@ namespace Model_Accounting_Warehouse.Modul
                 string cleanColumnName = Path.StartsWith("@")
                     ? Path.Substring(1)
                     : Path;
-                Image image = new Image() { Source = new BitmapImage(new Uri(Path)) };
+                    Image image = new Image() { Source = new BitmapImage(new Uri(Path)) };
 
 
                 DataGridTextColumn column = new DataGridTextColumn
@@ -417,8 +797,6 @@ namespace Model_Accounting_Warehouse.Modul
                 };
             }
         }
-
-        #region Обработка данных с Продукции
         protected DataGridTextColumn SelectTableProduct(string columnName = "@Id", string displayName = null)
         {
             try
@@ -495,6 +873,37 @@ namespace Model_Accounting_Warehouse.Modul
                 MessageBox.Show($"Ошибка загрузки данных: {ex.Message}",
                               "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return new List<Products>();
+            }
+        }
+
+
+        /// <summary>
+        /// Быстрый запрос к таблице с продуктами, с группировкой данных
+        /// </summary>
+        /// <param name="orderBy"> Имя столбца по которой идёт группировка </param>
+        /// <returns>Все данные с таблицы Products / Продукты </returns>
+        public List<UserInfo> LoadUserInfoData(string orderBy = "Id")
+        {
+            try
+            {
+                var connectionString = $"Server={NameServers};DataBase={NameBasaData};Trusted_connection=True;TrustServerCertificate=True;";
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = $"SELECT * FROM UserInfo ORDER BY {orderBy}";
+                    var products = connection.Query<UserInfo>(query);
+
+                    connection.Close();
+                    return products.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}",
+                              "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return new List<UserInfo>();
             }
         }
     }

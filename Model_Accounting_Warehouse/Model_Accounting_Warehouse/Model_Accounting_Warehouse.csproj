@@ -90,6 +90,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Page_Prog\PageCreateShop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page_Prog\PageLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +103,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page_Prog\PageWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page_Prog\Work PageProg\EditShop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page_Prog\Work PageProg\FierEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,6 +137,9 @@
     </Compile>
     <Compile Include="Modul\API_MENEGER_DATABASE.cs" />
     <Compile Include="Modul\ConfigurationReder.cs" />
+    <Compile Include="Page_Prog\PageCreateShop.xaml.cs">
+      <DependentUpon>PageCreateShop.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Page_Prog\PageLoad.xaml.cs">
       <DependentUpon>PageLoad.xaml</DependentUpon>
     </Compile>
@@ -133,6 +148,12 @@
     </Compile>
     <Compile Include="Page_Prog\PageWork.xaml.cs">
       <DependentUpon>PageWork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_Prog\Work PageProg\EditShop.xaml.cs">
+      <DependentUpon>EditShop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_Prog\Work PageProg\FierEmployee.xaml.cs">
+      <DependentUpon>FierEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page_Prog\Work PageProg\Page404Error.xaml.cs">
       <DependentUpon>Page404Error.xaml</DependentUpon>

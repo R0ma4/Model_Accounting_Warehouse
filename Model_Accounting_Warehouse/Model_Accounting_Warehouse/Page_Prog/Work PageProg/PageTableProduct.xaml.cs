@@ -28,6 +28,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         private ObservableCollection<Products> _products;
         public static MainWindow main = Application.Current.MainWindow as MainWindow;
         Modul.API_MENEGER_DATABASE _database = new Modul.API_MENEGER_DATABASE(main.Name_Server);
+        
 
         Products Product;
         public PageTableProduct()
@@ -39,7 +40,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            main.Reg.FixElement(GridWindow);
             LoadProducts(' ');
         }
 
@@ -53,7 +54,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Description", "Описание"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Remains", "Остаток на складе"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_DeliveryDate", "Дата последнего привоза"));
-            ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Department", "Отдел товара"));
+            ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Cotigory", "Отдел товара"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Place", "Место / Полка товара"));
 
             ProductsGrid.ItemsSource = _database.LoadProductsData("Id");
@@ -104,7 +105,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         private void DeleteRowButton_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-          MessageBoxResult messageBox =  MessageBox.Show("Вы уверены, что хотите удалить? " + button.Uid, "Вы уверенны?",MessageBoxButton.YesNo,MessageBoxImage.Question);
+            MessageBoxResult messageBox =  MessageBox.Show("Вы уверены, что хотите удалить? " + button.Uid, "Вы уверенны?",MessageBoxButton.YesNo,MessageBoxImage.Question);
             if (messageBox == MessageBoxResult.Yes) 
             {
                 var conections = $"Server={main.Name_Server};DataBase={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";

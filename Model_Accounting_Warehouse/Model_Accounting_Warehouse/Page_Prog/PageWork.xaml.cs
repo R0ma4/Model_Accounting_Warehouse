@@ -30,11 +30,11 @@ namespace Model_Accounting_Warehouse.Page_Prog
         public PageWork()
         {
             InitializeComponent();
-
+       
         }
 
-       
-       
+
+      
 
         private void ClickButtonEvert(object sender, RoutedEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Model_Accounting_Warehouse.Page_Prog
             switch (menuItem.Name) 
             {
                 case "ExitProgramm":
-                     // main.PageControl.Content = main.mainpageMM;
+                    // main.PageControl.Content = main.mainpageMM;
                     break;
                 case "UpdateProduct":
                     WorkPage.Content = main.tableProduct;
@@ -59,6 +59,9 @@ namespace Model_Accounting_Warehouse.Page_Prog
                     break;
                 case "CreateNewProduct":
                    WorkPage.Content = main.pageEdit;
+                    break;
+                case "FaierEmployeeInDataBase":
+                    WorkPage.Content = main.pageFierEmployee;
                     break;
                 default:
                    WorkPage.Content = main.page404Error;

@@ -1,0 +1,40 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.Work_PageProg.FierEmployee"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog.Work_PageProg"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FierEmployee">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="397*"/>
+            <ColumnDefinition Width="403*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="89*"/>
+            <RowDefinition Height="70*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="191*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Увольнение" Foreground="White" Margin="13,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="67" Width="377" FontSize="48"/>
+        <TextBlock Text="Паспорт:" Foreground="White" Margin="17,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" Height="62" Width="359" FontSize="48" Grid.Row="1"/>
+        <TextBlock Text="Причина увольнения" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="386" FontSize="22" Grid.Row="2"/>
+        <TextBlock Text="Рписание / Рекамендация (не обязательно)" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Left" Height="35" Width="386" FontSize="18" Grid.Row="3" Margin="2,5,0,0" TextWrapping="Wrap"/>
+
+        <TextBox x:Name="DocementNomer" Margin="7,0,6,0" Grid.Row="1" Height="40" Grid.Column="1" VerticalAlignment="Center"/>
+        <TextBox Margin="12,40,16,0" Grid.Row="3" Height="136" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <ComboBox x:Name="TypeFrie" Grid.Column="1" Margin="3,9,6,6" Grid.Row="2" SelectedIndex="0" FontSize="18" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <ComboBoxItem Content="ОБЯЗАТЕЛЬНО УКАЗАТЬ ПРИЧИНУ" IsEnabled="False"/>
+            <ComboBoxItem Content="По собсенному желанию"/>
+            <ComboBoxItem Content="Не выполнение должностых обязательств"/>
+            <ComboBoxItem Content="Перевод в другую компанию"/>
+        </ComboBox>
+
+        <Button x:Name="FrieEmployee" Content="Уволить" Click="FrieEmployee_Click" Margin="48,7,77,9" Grid.Row="4" Grid.Column="1"/>
+    </Grid>
+</Page>

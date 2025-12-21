@@ -19,22 +19,34 @@ using System.Windows.Shapes;
 namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
 {
     /// <summary>
-    /// Логика взаимодействия для PageEditProduct.xaml
+    /// Логика взаимодействия для PageEditProduct.xaml ThisSupplier
     /// </summary>
     public partial class PageEditProduct : Page
     {
         public bool isCreateProduct = true;
-        public MainWindow main = Application.Current.MainWindow as MainWindow;
+        public static MainWindow main = Application.Current.MainWindow as MainWindow;
+        Modul.API_MENEGER_DATABASE aPI = new Modul.API_MENEGER_DATABASE(main.Name_Server);
 
         bool EditBool = false;
-        public int CodeProduct = 10001;
+        public int CodeProduct = 0;
         public PageEditProduct()
         {
             InitializeComponent();
 
-            if (CodeProduct > 10000 && CodeProduct < 999999)
+
+            if (aPI.GetSuppliersList().Count() != 0)
+            {
+                ThisSupplier.Items.Clear();
+            }
+            foreach (var item in aPI.GetSuppliersList())
+            {
+                ThisSupplier.Items.Add(item.Id +" | "+item.Supplier_Name);
+            }
+
+            if ((CodeProduct > 10000 && CodeProduct < 999999) || (CodeProduct == 0))
             {
 
+                if(CodeProduct == 0) { return; }
                 var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
                 using (var connection = new SqlConnection(connectionString))
                 {
@@ -60,6 +72,8 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             {
                 MessegeBox("Не верный код хронения товара\nДанный код - не имеет право на сущесвование", "Ошибка при провеки продукта"); return;
             }
+           
+          
         }
 
         string Status = "", Images = "Не назначен";
@@ -157,22 +171,19 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
                     if (LogInTry.Count() > 0) { MessegeBox("Данный Продукт уже сущесвует!", "Ошибка при создании"); return; }
 
 
-                    var insertTableInfoQuery = @"INSERT INTO Products (
-    Product_Icone, Product_Name, Product_Description, 
-    Product_Prise, Product_Status, Product_Date_of_Delivery,
-    Product_Remains, Product_Pay, Product_Bay, Product_Are_Pay
-) 
-VALUES 
-
-(@Product_Icone, @Product_Name, @Product_Description, 
- @Product_Prise, @Product_Status, @Product_Date_of_Delivery, @Product_Remains, @Product_Pay, @Product_Bay, @Product_Are_Pay);";
+                    var insertTableInfoQuery = @"INSERT INTO Products 
+( Product_icon, Product_Name, Product_Description, Product_Cotigory, Product_Status, Product_DeliveryDate,
+    Product_Remains, Product_Place, Product_Are_Pay, Product_Supplier, Product_Pay,ShopInfor ) 
+VALUES
+( @Product_icon, @Product_Name, @Product_Description, @Product_Cotigory, @Product_Status, @Product_DeliveryDate,
+    @Product_Remains, @Product_Place, @Product_Are_Pay, @Product_Supplier, @Product_Pay,@ShopInfor ) ";
 
                      Status = GetPositionFromComboBoxIndex(TypeStatus.SelectedIndex);
 
                     connection.Execute(insertTableInfoQuery, new
                     {
                         Product_Name = NameProductTextBox.Text,
-                        Product_Icone = Images,
+                        Product_icon = Images,
                         Product_Description = DescriptionProductTextBox.Text,
                         Product_Prise = int.Parse(MaiPrise.Text),
                         Product_Remains = int.Parse(ProductRemains.Text),
@@ -219,6 +230,16 @@ VALUES
         }
 
         private void ProductRemains_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void KeyDown(object sender, KeyEventArgs e)
+        {
+            ThisSupplier = aPI.GetSupplier();
+        }
+
+        private void KeyDowns(object sender, KeyEventArgs e)
         {
 
         }

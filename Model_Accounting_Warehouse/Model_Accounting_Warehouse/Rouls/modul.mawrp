@@ -4,4 +4,25 @@ varsion : 1.1
 >>> 
 
 
-?>: "Model_Accounting_Warehouse_DataBase"
+?>: "Model_Accounting_Warehouse_DataBase" | "HOME-PC\SQLEXPRESS"
+
+[Users]
+{
+    
+}
+
+>> 'Rols' = 
+{
+    1) Администратор (1,1,1,1)
+    2) Менеджер (1,1,0,0)
+    3) Касир (1,1,1,1)
+    4) Гость
+}
+
+>> 'Rols' = 
+{
+    1) Администратор
+    2) Менеджер
+    3) Касир
+    4) Гость
+}

@@ -15,6 +15,15 @@ namespace Model_Accounting_Warehouse.Modul
 {
     public class ConfigurationReder
     {
+        #region Очень важные переменные
+
+        protected string Begraund;
+        protected Color Fontgund;
+        protected Color ButtonGraud;
+
+
+        #endregion
+
 
         public class AppConfig
         {
@@ -36,11 +45,21 @@ namespace Model_Accounting_Warehouse.Modul
         public string Puth_Ini_Roul;
         public ConfigurationReder()
         {
+            Console.Write("START _ READER ");
             Updater = new DispatcherTimer();
-            Updater.Interval = TimeSpan.FromMilliseconds(100);
+            Updater.Interval = TimeSpan.FromMilliseconds(1);
             Updater.Tick += UpdateEditor;
             Updater.Start();
+        
         }
+        #region Кароче, то что нужно вернуть) 
+
+
+       
+
+        #endregion
+
+
         private void UpdateEditor(object sender, EventArgs e)
         {
             try
@@ -83,7 +102,11 @@ namespace Model_Accounting_Warehouse.Modul
                                 value[0] = value[0].Trim();
                                 switch (currentBlock)
                                 {
+                                    case "Castomizaut":
+                                        ColorConfig(config, key, value[0]);
+                                        break;
                                     case "Window":
+                                        Console.WriteLine("КЛЮЧ ОКНА: ", key, value[0]);
                                         ProcessWindowConfig(config, key, value[0]);
                                         break;
                                     case "Rouls":
@@ -96,9 +119,10 @@ namespace Model_Accounting_Warehouse.Modul
                                     case "Icone":
                                         // Обработка Icone
                                         break;
-                                    case "Castomizaut":
-                                        ColorConfig(config, key, value[0]);
+                                    case "Procces":
+                                        // Обработка Icone
                                         break;
+
                                     default:
                                         ShowBlockError(currentBlock);
                                         break;
@@ -126,18 +150,23 @@ namespace Model_Accounting_Warehouse.Modul
 
         public void ColorConfig(AppConfig config, string key, string value)
         {
-            Console.WriteLine("Обноружен пораметор" + key +'='+ value);
             value = value.Trim().Replace("\'", null);
+            Console.WriteLine("Обноружен пораметор" + key + " = " + value);
+
+
+            Begraund = value;
+            Console.WriteLine($"КЛЮЧ ЦВЕТА: {value} От пораметра {key}");
+            
             switch (key)
             {
                 case "PROGRAM_BACKGROUND":
-                    config.main.PROGRAM_BACKGROUND = (Color)ColorConverter.ConvertFromString(value);
+                    Begraund = value;
                     break;
                 case "PROGRAM_FRAGEGROUND":
-                    config.main.PROGRAM_FROGRAM = (Color)ColorConverter.ConvertFromString(value);
+                    Fontgund = (Color)ColorConverter.ConvertFromString(value);
                     break;
                 case "PROGRAM_BUTTON":
-                    config.main.PROGRAM_BUTTON = (Color)ColorConverter.ConvertFromString(value);
+                    ButtonGraud = (Color)ColorConverter.ConvertFromString(value);
                     break;
                 default:
                     ShowParameterError(key, "Window");
@@ -154,7 +183,10 @@ namespace Model_Accounting_Warehouse.Modul
                     if (int.TryParse(value, out int height)) {
                         if (height > 100 && height < 2000)
                         {
+                            Console.WriteLine("Высота " + height);
                             config.main.MinHeight = height;
+                            Console.WriteLine("Высота экрана " + config.main.MinHeight);
+
                         }
                         else
                         {
@@ -324,7 +356,7 @@ namespace Model_Accounting_Warehouse.Modul
 
             return list;
         }
-        public void FixElementSizes(Grid grid, AppConfig config)
+        public void FixElement(Grid grid)
         {
             // Список типов, у которых есть Background
             foreach (FrameworkElement element in GetAllElements(grid))
@@ -335,45 +367,45 @@ namespace Model_Accounting_Warehouse.Modul
                     var brush = GetBackgroundBrush(element);
                     if (brush != null && brush.Color.A > 0)
                     {
-                        Console.WriteLine(element.Name ?? element.GetType().Name);
+                        Console.WriteLine($"Element Correct: {element.Name ?? element.GetType().Name} : {element.GetType().Name} Color: [ ButtonGraud = {ButtonGraud}| Fontgund = {Fontgund} | Begraund = {Begraund}] ");
                         if (element is Button button)
                         {
-                            button.Background = new SolidColorBrush(config.main.PROGRAM_BUTTON);
-                            button.Foreground = new SolidColorBrush(config.main.PROGRAM_BUTTON);
+                            button.Background = new SolidColorBrush(ButtonGraud);
+                            button.Foreground = new SolidColorBrush(Fontgund);
                         }
                         if (element is TextBlock textBlock)
                         {
-                            textBlock.Foreground = new SolidColorBrush(config.main.PROGRAM_FROGRAM);
+                            textBlock.Foreground = new SolidColorBrush(Fontgund);
                         }
                         if (element is TextBox textbox)
                         {
-                            textbox.Background = new SolidColorBrush(config.main.PROGRAM_BUTTON);
-                            textbox.Foreground = new SolidColorBrush(config.main.PROGRAM_FROGRAM);
+                            textbox.Background = new SolidColorBrush(ButtonGraud);
+                            textbox.Foreground = new SolidColorBrush(Fontgund);
                         }
                         if (element is ComboBox comboBox)
                         {
-                            comboBox.Background = new SolidColorBrush(config.main.PROGRAM_BUTTON);
-                            comboBox.Foreground = new SolidColorBrush(config.main.PROGRAM_FROGRAM);
+                            comboBox.Background = new SolidColorBrush(ButtonGraud);
+                            comboBox.Foreground = new SolidColorBrush(Fontgund);
                         }
                         if (element is ComboBoxItem comboBoxItem)
                         {
-                            comboBoxItem.Background = new SolidColorBrush(config.main.PROGRAM_BUTTON);
-                            comboBoxItem.Foreground = new SolidColorBrush(config.main.PROGRAM_FROGRAM);
+                            // comboBoxItem.Background = new SolidColorBrush(Begraund);
+                            comboBoxItem.Foreground = new SolidColorBrush(Fontgund);
                         }
                         if (element is Grid grid_color)
                         {
-                            grid_color.Background = new SolidColorBrush(config.main.PROGRAM_BACKGROUND);
+                           //  grid_color.Background = new SolidColorBrush(Begraund);
                         }
                         if (element is Menu menu)
                         {
-                            menu.Background = new SolidColorBrush(config.main.PROGRAM_BACKGROUND);
-                            menu.Foreground = new SolidColorBrush(config.main.PROGRAM_FROGRAM);
+                         //   menu.Background = new SolidColorBrush(Begraund);
+                            menu.Foreground = new SolidColorBrush(Fontgund);
                         }
 
                         if (element is MenuItem menuItem)
                         {
-                            menuItem.Background = new SolidColorBrush(config.main.PROGRAM_BUTTON);
-                            menuItem.Foreground = new SolidColorBrush(config.main.PROGRAM_BUTTON);
+                          //  menuItem.Background = new SolidColorBrush(Begraund);
+                            menuItem.Foreground = new SolidColorBrush(Fontgund);
                         }
                     }
                 }

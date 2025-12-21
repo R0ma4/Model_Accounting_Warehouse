@@ -1,0 +1,293 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.PageCreateShop"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1080"
+      Title="PageCreateShop">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" 
+               Text="Регистрация Магазина" 
+               Margin="0,20,0,20" 
+               Foreground="White" 
+               FontSize="36"
+               HorizontalAlignment="Center"/>
+
+        <!-- Левая колонка -->
+        <!-- Улица -->
+        <TextBlock Grid.Column="0" Grid.Row="1" 
+               Text="Улица"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="1" 
+             x:Name="NameShopToSklad" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"/>
+
+        <!-- ИНН -->
+        <TextBlock Grid.Column="0" Grid.Row="2" 
+               Text="ИНН"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="2" 
+             x:Name="INNShop" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"
+             MaxLength="12"/>
+
+        <!-- КПП -->
+        <TextBlock Grid.Column="0" Grid.Row="3" 
+               Text="КПП"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="3" 
+             x:Name="KPPShop" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"
+             MaxLength="9"/>
+
+        <!-- Номер счёта -->
+        <TextBlock Grid.Column="0" Grid.Row="4" 
+               Text="Номер расчётного счёта"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="4" 
+             x:Name="NamberBankAccount" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"
+             MaxLength="20"/>
+
+        <!-- БИК -->
+        <TextBlock Grid.Column="0" Grid.Row="5" 
+               Text="БИК"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="5" 
+             x:Name="NamberBIKShop" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"
+             MaxLength="9"/>
+
+        <!-- Юридический адрес -->
+        <TextBlock Grid.Column="0" Grid.Row="6" 
+               Text="Юридический адрес"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="6" 
+             x:Name="LegalAddressShop" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"/>
+
+        <!-- Телефон -->
+        <TextBlock Grid.Column="0" Grid.Row="7" 
+               Text="Телефон"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="1" Grid.Row="7" 
+             x:Name="Phone" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"/>
+
+        <!-- Правая колонка -->
+        <!-- Банк -->
+        <TextBlock Grid.Column="3" Grid.Row="1" 
+               Text="Банк"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <ComboBox Grid.Column="4" Grid.Row="1" SelectedIndex="0"
+              x:Name="BankComboBox"
+              Height="30" 
+              FontSize="14" 
+              Background="#FF2D2D2D" 
+              Foreground="Black" 
+              BorderBrush="#FF505050"
+              Margin="0,5">
+            <ComboBoxItem Content="Выберите банк" IsEnabled="False"/>
+
+            <!-- Российские банки -->
+            <ComboBoxItem Content="Сбербанк" Tag="Ru"/>
+            <ComboBoxItem Content="ВТБ" Tag="Ru"/>
+            <ComboBoxItem Content="Газпромбанк" Tag="Ru"/>
+            <ComboBoxItem Content="Альфа-Банк" Tag="Ru"/>
+            <ComboBoxItem Content="Райффайзенбанк" Tag="Ru"/>
+            <ComboBoxItem Content="Промсвязьбанк" Tag="Ru"/>
+            <ComboBoxItem Content="Московский кредитный банк" Tag="Ru"/>
+            <ComboBoxItem Content="Россельхозбанк" Tag="Ru"/>
+            <ComboBoxItem Content="Тинькофф Банк" Tag="Ru"/>
+            <ComboBoxItem Content="Открытие" Tag="Ru"/>
+            <ComboBoxItem Content="Совкомбанк" Tag="Ru"/>
+            <ComboBoxItem Content="Банк Уралсиб" Tag="Ru"/>
+            <ComboBoxItem Content="ЮниКредит Банк" Tag="Ru"/>
+            <ComboBoxItem Content="Росбанк" Tag="044525256"/>
+
+            <!-- Белорусские банки -->
+            <ComboBoxItem Content="Белагропромбанк" Tag="Bu"/>
+            <ComboBoxItem Content="Белинвестбанк" Tag="Bu"/>
+            <ComboBoxItem Content="Беларусбанк" Tag="Bu"/>
+            <ComboBoxItem Content="Приорбанк" Tag="Bu"/>
+            <ComboBoxItem Content="Банк Дабрабыт" Tag="Bu"/>
+
+            <!-- Казахстанские банки -->
+            <ComboBoxItem Content="Народный банк Казахстана" Tag="Kz"/>
+            <ComboBoxItem Content="Банк ЦентрКредит" Tag="Kz"/>
+            <ComboBoxItem Content="АТФБанк" Tag="Kz"/>
+            <ComboBoxItem Content="Казкоммерцбанк" Tag="Kz"/>
+            <ComboBoxItem Content="Евразийский банк" Tag="Kz"/>
+            <ComboBoxItem Content="Сбербанк Казахстан" Tag="Kz"/>
+            <ComboBoxItem Content="ForteBank" Tag="Kz"/>
+
+            <!-- Украинские банки -->
+            <ComboBoxItem Content="ПриватБанк" Tag="Uk"/>
+            <ComboBoxItem Content="Ощадбанк" Tag="Uk"/>
+            <ComboBoxItem Content="Укрэксимбанк" Tag="Uk"/>
+            <ComboBoxItem Content="Райффайзен Банк Аваль" Tag="Uk"/>
+            <ComboBoxItem Content="Укргазбанк" Tag="Uk"/>
+
+            <!-- Армянские банки -->
+            <ComboBoxItem Content="Ардшинбанк" Tag="Ar"/>
+            <ComboBoxItem Content="Америабанк" Tag="Ar"/>
+            <ComboBoxItem Content="Акордбанк" Tag="Ar"/>
+            <ComboBoxItem Content="Инекобанк" Tag="Ar"/>
+
+            <!-- Грузинские банки -->
+            <ComboBoxItem Content="Банк Грузии" Tag="Gu"/>
+            <ComboBoxItem Content="TBC Bank" Tag="Gu"/>
+            <ComboBoxItem Content="Liberty Bank" Tag="Gu"/>
+
+            <!-- Азербайджанские банки -->
+            <ComboBoxItem Content="Kapital Bank" Tag="Az"/>
+            <ComboBoxItem Content="Международный Банк Азербайджана" Tag="Az"/>
+            <ComboBoxItem Content="Паша Банк" Tag="Az"/>
+
+            <!-- Кыргызстанские банки -->
+            <ComboBoxItem Content="РСК Банк" Tag="Kr"/>
+            <ComboBoxItem Content="Дос-Кредобанк" Tag="Kr"/>
+            <ComboBoxItem Content="Кыргызстан Банк" Tag="Kr"/>
+
+            <!-- Узбекистанские банки -->
+            <ComboBoxItem Content="Национальный банк Узбекистана" Tag="Uz"/>
+            <ComboBoxItem Content="Асакабанк" Tag="Uz"/>
+            <ComboBoxItem Content="Ипотека-банк" Tag="Uz"/>
+
+            <!-- Таджикистанские банки -->
+            <ComboBoxItem Content="Амонатбонк" Tag="Taj"/>
+            <ComboBoxItem Content="Банк Эсхата" Tag="Taj"/>
+            <ComboBoxItem Content="Ориёнбонк" Tag="Taj"/>
+
+        </ComboBox>
+
+        <!-- Электронная почта -->
+        <TextBlock Grid.Column="3" Grid.Row="7" 
+               Text="Электронная почта"  
+               Foreground="White" 
+               FontSize="16" 
+               VerticalAlignment="Center"
+               Margin="10,5"/>
+
+        <TextBox Grid.Column="4" Grid.Row="7" 
+             x:Name="Emale" 
+             Height="30" 
+             FontSize="14" 
+             Background="#FF2D2D2D" 
+             Foreground="White" 
+             BorderBrush="#FF505050"
+             Margin="0,5"/>
+
+        <!-- Кнопки -->
+        <Button Grid.Column="3" Grid.Row="9" 
+            Grid.ColumnSpan="2"
+            Content="Зарегистрировать" 
+            Height="40" 
+            Width="150"
+            Margin="10,20"
+            HorizontalAlignment="Right"
+            Click="RegisterButton_Click"/>
+
+        <Button Grid.Column="0" Grid.Row="9" 
+            Grid.ColumnSpan="2"
+            Content="Отмена" 
+            Height="40" 
+            Width="150"
+            Margin="10,20"
+            HorizontalAlignment="Left"
+            Click="CancelButton_Click"/>
+    </Grid>
+</Page>

@@ -14,6 +14,8 @@
         <TextBox x:Name="NameUser" Height="45" Width="350" VerticalAlignment="Bottom" Margin="220,0,220,200" Text="Admin" FontSize="24" />
         <PasswordBox x:Name="PasswordUser" Height="45" Width="350" Margin="220,0,220,140" VerticalAlignment="Bottom" FontSize="24" />
         <TextBox x:Name="PasswordUserCheck" Visibility="Collapsed" Height="45" Width="350" Margin="220,0,220,140" VerticalAlignment="Bottom" FontSize="24" />
-        <Button x:Name="PassworDutton" Content="Показать пороль" Width="368" Click="Button_Click" VerticalAlignment="Bottom" Margin="219,0,213,100" Foreground="White" Background="{x:Null}"/>
+        <Button x:Name="ButEnterProfil" Content="Войти в профиль" Width="368" Click="EnterProfil_Button" VerticalAlignment="Bottom" Margin="219,0,213,100" Foreground="White" Background="{x:Null}"/>
+        <Button x:Name="PassworDutton" Content="Показать пороль" Width="368" Click="Button_Click" VerticalAlignment="Bottom" Margin="219,0,213,72" Foreground="White" Background="{x:Null}" Height="20"/>
+        <Image Margin="665,29,18,363"/>
     </Grid>
 </Page>

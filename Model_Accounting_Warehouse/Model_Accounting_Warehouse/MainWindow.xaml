@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Model_Accounting_Warehouse"
         mc:Ignorable="d"
-        Title="Модуль Контроля Склада" Height="450" Width="800" Icon="/MAWIcon.png" Background="#FF1A1A1A">
+        Title="Модуль Контроля Склада" Height="450" Width="800" Icon="/MAWIcon.png" Background="#FF1A1A1A" 
+        
+        >
     <Grid>
-        <Frame x:Name="PageControl" Source="/Page_Prog/PageLoad.xaml" MouseMove="MouseMoveModul" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="PageControl" Source="/Page_Prog/Work PageProg/PageAddUser.xaml" MouseMove="MouseMoveModul" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

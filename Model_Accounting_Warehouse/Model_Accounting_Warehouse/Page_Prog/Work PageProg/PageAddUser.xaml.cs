@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,7 +42,8 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             dATABASEAPI = new Modul.API_MENEGER_DATABASE(main.Name_Server);
         }
 
-
+        private static readonly Regex DateFormatRegex =
+       new Regex(@"^\d{2} \d{2} \d{4}$", RegexOptions.Compiled);
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(string.IsNullOrEmpty(LoginTextBox.Text) || LoginTextBox.Text.Length < 0) { MessegeBox("Имя не может быть пустым","Ошибка в логене пользователя"); return; }
@@ -49,10 +51,13 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             if(PasswordBox.Password != ConfirmPasswordBox.Password) { MessegeBox("Пороли не совподают", "Пороли не совподают"); return; }
             if(string.IsNullOrEmpty(SurnameTextBox.Text) || SurnameTextBox.Text.Length < 0) { MessegeBox("Фамилия у пользователя - 100% Есть!", "Ошибка регестрации пользователя"); return; }
             if(string.IsNullOrEmpty(NameTextBox.Text) || NameTextBox.Text.Length < 0) { MessegeBox("Фамилия у пользователя - 100% Есть!", "Ошибка регестрации пользователя"); return; }
+            if(string.IsNullOrEmpty(Document.Text) || Document.Text.Length <= 6 || !DateFormatRegex.IsMatch(Document.Text)) { MessegeBox("Не верный формат документа - паспорт!\nПример:\n:00 00 0000", "Ошибка регестрации пользователя"); return; }
+            if(string.IsNullOrEmpty(Employee_Are.Text) || !int.TryParse(Employee_Are.Text, out int EAre)) { MessegeBox("Не вырный формат у возроста!", "Ошибка регестрации пользователя"); return; }
+            if(EAre < 16 || EAre > 60) { MessegeBox("Возрост рабочего, должен быть от 16 до 60 лет", "Ошибка регестрации пользователя"); return; }
+            // Формат:  00 00 0000
 
 
-
-            dATABASEAPI.CreateUser(LoginTextBox.Text, PasswordBox.Password,PositionComboBox.SelectedIndex, NameTextBox.Text, SurnameTextBox.Text, MiddleNameTextBox.Text);
+            dATABASEAPI.CreateUser(Document.Text, LoginTextBox.Text, PasswordBox.Password,PositionComboBox.SelectedIndex, NameTextBox.Text, SurnameTextBox.Text, MiddleNameTextBox.Text, int.Parse(Employee_Are.Text));
         }
         // MiddleNameTextBox
 

@@ -29,8 +29,7 @@ namespace Model_Accounting_Warehouse.ModulWindowRedact
         {
             if(int.TryParse(CodeProduct.Text, out int CProd))
             {
-                main.pageEdit.
-                 = main.pageEdit;
+                
             }
         }
     }
