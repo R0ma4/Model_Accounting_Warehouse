@@ -28,8 +28,7 @@ namespace Model_Accounting_Warehouse
         public string Password_User { get; set; }
         public int UserInfoId { get; set; }
         public ICollection<UserInfo> UserInfoLost { get; set; }
-        public int Info_Shop { get; set; }
-        public ICollection<ShopInfo> ShopInfoLost { get; set; }
+      
         public LogTable() { }
     }
 
@@ -43,8 +42,9 @@ namespace Model_Accounting_Warehouse
         public string Patronymic { get; set; }
         public string Pasport { get; set; }
         public int Are { get; set; }
+        public int Info_Shop { get; set; }
+        public ICollection<Warehouse> ShopInfoLost { get; set; }
     }
-
     public class Products
     {
         public int Id { get; set; }
@@ -52,7 +52,7 @@ namespace Model_Accounting_Warehouse
         public string Product_Name { get; set; }
         public string Product_Description { get; set; }
         public string Product_Cotigory { get; set; }
-        public int Product_Remains { get; set; }
+        // public int Product_Remains { get; set; } Старый 
         public string Product_Status { get; set; }
         public DateTime Product_DeliveryDate { get; set; }
         public string Product_Place { get; set; }
@@ -61,7 +61,6 @@ namespace Model_Accounting_Warehouse
         public int Product_Pay { get; set; }
         public int ShopInfor { get; set; }
     }
-
     public class Supplier
     {
         // Если в таблице столбец называется "Id"
@@ -71,12 +70,11 @@ namespace Model_Accounting_Warehouse
         public string Supplier_Name { get; set; }
 
     }
-    public class ShopInfo   
+    public class Warehouse
     {
         public int Id { get; set; }
-        public string Supplier_Name { get; set; }
+        public string Street { get; set; }
         public double Sales { get; set; }
-
         public string INN { get; set; }
         public string KPP { get; set; }
         public string BankAccount { get; set; }
@@ -87,13 +85,14 @@ namespace Model_Accounting_Warehouse
         public string Email { get; set; }
 
     }
-
-    public class EmtityPrise
+    public class Operation
     {
         public int Id { get; set; }
-        public double GlobalPrise { get; set; }
-        public double BayPrise { get; set; }
-        public double ShopPayPrise { get; set; }
+        public string Product_Name { get; set; }
+        public string TypeOperation { get; set; }
+        public int Coint { get; set; }
+        public int IdWarehouse { get; set; }
+        public int IdProduct { get; set; }
     }
 
     /// <summary>
@@ -117,17 +116,12 @@ namespace Model_Accounting_Warehouse
             InitializeComponent();
            
             this.Loaded += MainWindow_Loaded;
-            Reg.Puth_Ini_Roul = Puth_Ini_Roul;
+            Reg.Puth_Ini_Roul = ProgrammDirect + Puth_Ini_Roul;
 
             Updater = new DispatcherTimer();
             Updater.Interval = TimeSpan.FromMilliseconds(Time_Tick);
             Updater.Tick += UpdateEditor;
             Updater.Start();
-            
-            
-
-
-          
         }
 
         public Page_Prog.Work_PageProg.PageTableProduct tableProduct;
@@ -139,6 +133,7 @@ namespace Model_Accounting_Warehouse
         public Page_Prog.PageWork pageWork;
         public Page_Prog.PageCreateShop pageCreateShop;
         public Page_Prog.Work_PageProg.FierEmployee pageFierEmployee;
+        public Page_Prog.PageDropWareHouse pageDropWareHouse;
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var config = new ConfigurationReder.AppConfig();
@@ -147,6 +142,7 @@ namespace Model_Accounting_Warehouse
             pageWork = new PageWork();
             pageLoad = new PageLoad();
 
+            pageDropWareHouse = new PageDropWareHouse();
             pageFierEmployee = new Page_Prog.Work_PageProg.FierEmployee();
             pageEdit = new Page_Prog.Work_PageProg.PageEditProduct();
             tableProduct = new Page_Prog.Work_PageProg.PageTableProduct();
@@ -166,8 +162,18 @@ namespace Model_Accounting_Warehouse
             // Первая страница - по правиилам .ini файла
             switch (PageMainStart)
             {
+
+                case "TestPages":
+                    // Страница регистрации Магазина pageDropWareHouse
+                    // PageControl.Content = pageDropWareHouse;
+                    // PageControl.Content = pageMM;
+                    // PageControl.Content = pageAddUser;
+                    PageControl.Content = pageLoad;
+                    //PageControl.Content = pageCreateShop;
+                    break;
                 case "CreateShop":
-                    // Страница регистрации Магазина
+                   // Страница регистрации Магазина pageDropWareHouse
+                   // PageControl.Content = pageDropWareHouse;
                     PageControl.Content = pageCreateShop;
                     break;
                 case "Log In":
@@ -190,13 +196,16 @@ namespace Model_Accounting_Warehouse
             }
         }
 
+        public int ID_WareHouse = 1;
+
         public string Name_Server = "HOME-PC\\SQLEXPRESS";
         public string Name_Data_Base = "Model_Accounting_Warehouse_DataBase";
 
         public string PageMain = "Log In";
         public string PageMainStart = "Log In";
 
-        public string Puth_Ini_Roul = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Rouls";
+        public string ProgrammDirect = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse";
+        public string Puth_Ini_Roul = @"\Rouls";
 
 
 

@@ -32,6 +32,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             InitializeComponent();
 
 
+
         }
         public static MainWindow main;
         Modul.API_MENEGER_DATABASE dATABASEAPI;
@@ -40,6 +41,12 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         {
             main = Application.Current.MainWindow as MainWindow;
             dATABASEAPI = new Modul.API_MENEGER_DATABASE(main.Name_Server);
+          
+            IndexShopComboBox.Items.Clear();
+            if (dATABASEAPI != null)
+            {
+                foreach (var item in dATABASEAPI.GetWarehouse()) { IndexShopComboBox.Items.Add(item.Street); }
+            }
         }
 
         private static readonly Regex DateFormatRegex =

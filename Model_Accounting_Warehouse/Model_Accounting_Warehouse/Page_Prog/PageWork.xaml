@@ -16,11 +16,11 @@
 
         <Menu x:Name="MenuPanel" Grid.Row="0">
             <MenuItem Header="Файл">
-                <MenuItem Header="Создать новый модуль"/>
-                <MenuItem Header="Сохронить"/>
-                <MenuItem Header="Открыть"/>
-                <MenuItem Header="Импортировать"/>
-                <MenuItem Header="Экспортировать"/>
+                <MenuItem x:Name="SaveToModul" Header="Создать новый модуль" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="SaveFile" Header="Сохронить" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="OpenFile" Header="Открыть" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="ImportFile" Header="Импортировать" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="ExtoprtFile" Header="Экспортировать" Click="ClickButtonEvert"/>
             </MenuItem>
             <MenuItem Header="Вид">
                 <MenuItem Header="Создать новый модуль"/>

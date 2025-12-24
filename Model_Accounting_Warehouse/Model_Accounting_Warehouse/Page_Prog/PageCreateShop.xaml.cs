@@ -27,8 +27,36 @@ namespace Model_Accounting_Warehouse.Page_Prog
             InitializeComponent();
             main = Application.Current.MainWindow as MainWindow;
             dATABASEAPI = new Modul.API_MENEGER_DATABASE(main.Name_Server);
+
+            bool Remerd = Standaer();
+            if (!Remerd) 
+            {
+                MessageBox.Show("Не вышло потянуть стандартные / последние данные склада","Прерванно!",MessageBoxButton.OKCancel,MessageBoxImage.Warning);
+            }
         }
 
+        bool Standaer() 
+        {
+            try 
+            {
+                foreach (var item in dATABASEAPI.GetWarehouse())
+                {
+                    NameShopToSklad.Text = item.Street;
+                    INNShop.Text = item.INN;
+                    KPPShop.Text = item.KPP;
+                    NamberBankAccount.Text = item.BankAccount;
+                    NamberBIKShop.Text = item.BIK;
+                    LegalAddressShop.Text = item.LegalAddress;
+                    Phone.Text = item.Phone;
+                    Emale.Text = item.Email;
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         string CorectNameBank(int index_banck) 
         {
@@ -50,7 +78,7 @@ namespace Model_Accounting_Warehouse.Page_Prog
                 case 14: return "Промсвязьбанк";
                 case 15: return "ЮниКредит Банк\"";
                 case 16: return "Росбанк";
-                default: return null;
+                default: return "Не обработанный Банк";
             }
 
         }
@@ -72,11 +100,11 @@ namespace Model_Accounting_Warehouse.Page_Prog
             }
 
          int KEY_SHOP_CREATE = dATABASEAPI.CreateShop(
-             "\'ООО\' Мой Магазин и Склад", // Имя Компании / Магазина 
+             "\'ООО\' Мой Магазин и Склад", // Имя Компании / Магазина / Склада (Пока по стандарту  " 'ООО' Мой Магазин и Склад ")
              NameShopToSklad.Text,
              INNShop.Text,
              KPPShop.Text,
-             NamberBIKShop.Text,
+             NamberBankAccount.Text,
              CorectNameBank(BankComboBox.SelectedIndex),
              NamberBIKShop.Text,
              LegalAddressShop.Text,

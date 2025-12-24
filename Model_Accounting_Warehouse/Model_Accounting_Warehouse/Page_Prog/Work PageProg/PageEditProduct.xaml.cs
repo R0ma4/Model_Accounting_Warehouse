@@ -82,66 +82,20 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         {
             try 
             {
-                if (string.IsNullOrEmpty(NameProductTextBox.Text)) { MessegeBox("Наиминование продукта, не может быть пустым", "Ошибка при регестрации продукта"); return; }
+                int Key = aPI.AddProduct(Images, NameProductTextBox.Text, DescriptionProductTextBox.Text, CotogoryIndex(Cotigory.TabIndex), "Ожидается", "Жать, что оно ставиться автомотически..", Nuber.Text, ArePrise.Text, BayPrise.Text,1,1);
 
-                if (!int.TryParse(BayPrise.Text, out int CorectBayPrise)) { MessegeBox("Назночение \"Цена Покупки Товара\" имел не коректный ввод!", "Ошибка при регестрации продукта"); return; }
-
-                if (!int.TryParse(PayPrise.Text, out int CorectPayPrise)) { MessegeBox("Назночение \"Цена Продажи Товара\" имел не коректный ввод!", "Ошибка при регестрации продукта"); return; }
-                if (!int.TryParse(MaiPrise.Text, out int CorectMaiPrise)) { MessegeBox("Назночение \"Стандартная цена товара\" имел не коректный ввод!", "Ошибка при регестрации продукта"); return; }
-                if (!int.TryParse(ProductRemains.Text, out int CorectProductRemains)) { MessegeBox("Назночение \"Остаток на складе\" имел не коректный ввод!", "Ошибка при регестрации продукта"); return; }
-                if (!int.TryParse(ArePrise.Text, out int CorectArePrise)) { MessegeBox("Назночение \"Возрост для продажи\" имел не коректный ввод!", "Ошибка при регестрации продукта"); return; }
-
-                if (CorectArePrise < 4 || CorectArePrise > 25)
+                switch (Key) 
                 {
-                    MessegeBox("Возрост продажи не верен. И должен быть от 4 до 25", "Ошибка при регестрации продукта");
-                    return;
-                }
-
-
-                if (CorectBayPrise < 0 || CorectPayPrise < 0 || CorectMaiPrise < 0)
-                {
-                    MessegeBox("НИ одна цена не может быть отцрицательной", "Ошибка при регестрации продукта");
-                    return;
-                }
-
-                if (CorectPayPrise < (CorectBayPrise * 1.5))
-                {
-                    MessegeBox("Цена Продажи в магазине должна быть хотябы в 1.5 раза выше, чем закупочная ценна", "Ошибка при регестрации продукта");
-                    return;
-                }
-                int Min = CorectPayPrise - (35 / CorectMaiPrise);
-                int Max = CorectPayPrise + (35 / CorectMaiPrise);
-                if (CorectPayPrise > Max ||  CorectPayPrise < Min)
-                {
-                    MessegeBox("Разница цен можду точкой и магазина - не должна быть больше/меньше 35% от изночальной стоимости", "Ошибка при регестрации продукта");
-                    return;
-                }
-
-
-                if (CorectMaiPrise < (CorectBayPrise * 1.5))
-                {
-                    MessegeBox("Сумма оригинального ценика в магазине должна быть хотябы в 1.5 раза выше, чем закупочная ценна", "Ошибка при регестрации продукта");
-                    return;
-                }
-
-                if (CorectProductRemains < 0)
-                {
-                    MessegeBox("Количесво остатка на складе не может быть отрицательным", "Ошибка при регестрации продукта");
-                    return;
-                }
-
-                if (CorectProductRemains == 0)
-                {
-                    if (TypeStatus.SelectedIndex == 1)
-                    {
-                        MessegeBox("Статус \"В Наличие\" - Не может присвоеться к товару, чей остаток равен 0", "Ошибка при регестрации продукта");
-                        return;
-                    }
-                }
-                if (TypeStatus.SelectedIndex == 0)
-                {
-                    CorectProductRemains = 0;
-                    ProductRemains.Text = "0";
+                    case 0:
+                        MessageBox.Show("Все элементы обязательно должны быть запелены!","Ошибка заказа",MessageBoxButton.OK,MessageBoxImage.Error);
+                        break;
+                    case -1:
+                        MessageBox.Show("Ошибка оформления заказа, читайте логированнние", "Ошибка заказа", MessageBoxButton.OK, MessageBoxImage.Error);
+                        break;
+                    case 1:
+                        MessageBox.Show("Заказ успено офромлен", "Заказ оформлен", MessageBoxButton.OK, MessageBoxImage.Information);
+                        break;
+                    default : MessageBox.Show("Не обработанно", "Ошибка заказа", MessageBoxButton.OK, MessageBoxImage.Error); break;
                 }
             }
             catch (Exception ex)
@@ -150,10 +104,12 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             }
 
 
-            if (isCreateProduct)
-            {
-                CreateProduct();
-            }
+           
+        }
+
+        string ThisSupplierConvert(int s) 
+        {
+            return null;
         }
 
         public void CreateProduct()
@@ -209,6 +165,37 @@ VALUES
                 MessegeBox(ex.Message, "Ошибка!");
             }
         }
+
+        private string CotogoryIndex(int index)
+        {
+            // Если индекс 0 (заголовок "Котигория товара"), возвращаем пустую строку
+            if (index == 0)
+            {
+                return "NULL";
+            }
+
+            // Для остальных индексов получаем реальную категорию
+            switch (index)
+            {
+                case 1: return "Алкаголь";
+                case 2: return "Быстрое питание";
+                case 3: return "Бытовая техника";
+                case 4: return "Бытовая химия";
+                case 5: return "Детсоке питание";
+                case 6: return "Фрукты - Овощи";
+                case 7: return "Молочные продукты";
+                case 8: return "Огневые нагриватели";
+                case 9: return "Табак";
+                case 10: return "Энергетические напитки";
+                case 11: return "Гаизованные напитки";
+                case 12: return "Снеки";
+                case 13: return "Электронника";
+                case 14: return "Камукативыне приборы";
+                case 15: return "Куханные приборы";
+                default: return "Ожидается";
+            }
+        }
+
         private string GetPositionFromComboBoxIndex(int index)
         {
             switch (index)

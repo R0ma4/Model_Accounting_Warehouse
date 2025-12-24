@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Xceed.Document.NET;
+using Xceed.Words.NET;
 namespace Model_Accounting_Warehouse.Page_Prog
 {
 
@@ -33,7 +36,19 @@ namespace Model_Accounting_Warehouse.Page_Prog
        
         }
 
-
+        void DOX_Import() 
+        {
+           int Key = dATABASEAPI.DoxOperation(1);
+            switch (Key) 
+            {
+                case 1:
+                    MessageBox.Show("Отчёт был создан","Завершенно!",MessageBoxButton.OK,MessageBoxImage.Information);
+                    break;
+                case -1:
+                    MessageBox.Show("При создании отчёта, произошла ошибка.\nИзучите логированние", "Отказанно!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+            }
+        }
       
 
         private void ClickButtonEvert(object sender, RoutedEventArgs e)
@@ -41,9 +56,12 @@ namespace Model_Accounting_Warehouse.Page_Prog
 
             MenuItem menuItem = (MenuItem)sender;
             MessageBox.Show(menuItem.Name);
-
-            switch (menuItem.Name) 
+            
+            switch (menuItem.Name)
             {
+                case "ImportFile":
+                    DOX_Import();
+                    break;
                 case "ExitProgramm":
                     // main.PageControl.Content = main.mainpageMM;
                     break;

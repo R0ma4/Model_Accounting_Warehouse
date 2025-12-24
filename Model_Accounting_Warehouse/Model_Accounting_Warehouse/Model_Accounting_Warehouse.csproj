@@ -68,6 +68,15 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Document.NET, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.5.0.0\lib\net40\Xceed.Document.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Drawing.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.5.0.0\lib\net40\Xceed.Drawing.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Words.NET, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocX.5.0.0\lib\net40\Xceed.Words.NET.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -91,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Page_Prog\PageCreateShop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Page_Prog\PageDropWareHouse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -136,9 +149,13 @@
       <DependentUpon>RedactPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modul\API_MENEGER_DATABASE.cs" />
+    <Compile Include="Modul\ClassLofinrn.cs" />
     <Compile Include="Modul\ConfigurationReder.cs" />
     <Compile Include="Page_Prog\PageCreateShop.xaml.cs">
       <DependentUpon>PageCreateShop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_Prog\PageDropWareHouse.xaml.cs">
+      <DependentUpon>PageDropWareHouse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page_Prog\PageLoad.xaml.cs">
       <DependentUpon>PageLoad.xaml</DependentUpon>

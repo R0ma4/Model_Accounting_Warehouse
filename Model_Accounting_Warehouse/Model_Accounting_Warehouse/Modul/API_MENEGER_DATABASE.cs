@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+// Пи пу пи пу пи ) 
+using System.Net;
 using System.Net.Http;
+using System.Net.Http;
+using System.Security.Cryptography;
 using System.Security.Policy;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -16,9 +20,8 @@ using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
-// Пи пу пи пу пи ) 
-using System.Net;
-using System.Net.Http;
+using Xceed.Document.NET;
+using Xceed.Words.NET;
 
 namespace Model_Accounting_Warehouse.Modul
 {
@@ -50,26 +53,7 @@ namespace Model_Accounting_Warehouse.Modul
                 "Разшифрованный Пороль: " + DESHIFT("Password", "Admin123123")
                 );
         }
-        public async Task<string> GetRegionByIPAsync()
-        {
-            string Region = "ru";
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    string response = await client.GetStringAsync("http://ip-api.com/json/");
-                    // var json = JObject.Parse(response);
-
-                    // return json["country"]?.ToString() + ", " + json["regionName"]?.ToString();
-                    // // Пример: "Russia, Moscow"
-                    return Region;
-                }
-            }
-            catch
-            {
-                return "Не удалось определить регион";
-            }
-        }
+      
         #region Допка Топка 
 
         private string GetPositionFromComboBoxIndex(int index)
@@ -81,7 +65,7 @@ namespace Model_Accounting_Warehouse.Modul
                 case 2: return "Кассир";
                 case 3: return "Кладовщик";
                 case 4: return "Гость";
-                default: return "Гость";
+                default: return "Нет прав";
             }
         }
         public void MessegeBox(string messeg, string title)
@@ -147,6 +131,116 @@ namespace Model_Accounting_Warehouse.Modul
 
         #endregion
         // В классе API_MENEGER_DATABASE добавьте:
+
+        public int DoxOperation(int IdWareHouse)
+        {
+            string filePath = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Rouls\Docum.docx";
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+
+            try 
+            {
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    connection.Query<Operation>("SELECT * FROM Operation");
+                    int coint_cotigori = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi");
+                    int coint_operation = connection.Execute("SELECT * FROM Operation");
+                    int coint_register_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 1");
+                    int coint_drop_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 and TypeOperation = 3 and TypeOperation = 4");
+                    int coint_finqldata_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2");
+                    int coint_theft_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 3");
+                    int coint_nocotigor_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 4");
+                    
+                    var Warehouse = connection.Query<Warehouse>("SELECT * From Warehouse where id = @Id", new { Id = IdWareHouse}).ToList();
+                    string NameWarehouse = string.Empty;
+
+                    if(coint_cotigori < 0) { coint_cotigori = coint_cotigori * -1; }
+                    using (DocX document = DocX.Create(filePath))
+                    {
+                        foreach (var item in Warehouse) 
+                        {
+                            NameWarehouse = item.Street.Trim().ToString();
+                            break;
+                        }
+
+                        foreach (var item in connectionString)
+                        {
+                            if (true)
+                            {
+                                // Заголовок 
+                                Xceed.Document.NET.Paragraph title = document.InsertParagraph($"Отчет по Складу Отчет по Складу по складу «{NameWarehouse}»");
+                                title.FontSize(18);
+                                title.SpacingBefore(1.25);
+                                title.Font("Time New Roman");
+                                title.Bold();
+                                title.Alignment = Alignment.center;
+
+                                Xceed.Document.NET.Paragraph Anotach = document.InsertParagraph("\n\n" +
+                                    $"Информация об хронение и продажах товаров на складе - хронявшейся в магазине по улице: \'\'. За периуд от \' \' до \'{DateTime.Now.ToString("dd.MM.yyyy")}\'\n" +
+                                    $"За данное время было операций: {coint_cotigori}.\n" +
+                                    $"Проданно  - Едениц товара. Самый продоваеммый [NameProduct] / Чаще всего списывали (по просрочке) [NameProduct].\n" +
+                                    $"{coint_drop_product} списаний:\n\n" +
+                                    $"1) Списание по кражам: {coint_theft_product} шт.\n" +
+                                    $"2 )Списание из-за срока годности: {coint_finqldata_product} шт.\n" +
+                                    $"3 )Списание из-за не соотвествия: {coint_nocotigor_product} шт.\n" +
+                                    "\n\n");
+                                Anotach.FontSize(14);
+                                Anotach.Font("Time New Roman");
+                                Anotach.SpacingBefore(1.25);
+                                Anotach.Alignment = Alignment.right;
+
+
+                                Xceed.Document.NET.Paragraph InfoGull = document.InsertParagraph("Таблица: \n\n");
+                                InfoGull.FontSize(14);
+                                InfoGull.Font("Time New Roman");
+                                InfoGull.SpacingBefore(1.25);
+                                InfoGull.Alignment = Alignment.left;
+                                // Таблица 
+
+                                var Table = document.AddTable(5, 6);
+                                Table.Design = TableDesign.ColorfulList;
+
+                                Table.Rows[0].Cells[0].Paragraphs.First().Append("ID");
+                                Table.Rows[0].Cells[1].Paragraphs.First().Append("Товар");
+                                Table.Rows[0].Cells[2].Paragraphs.First().Append("Продажи");
+                                Table.Rows[0].Cells[3].Paragraphs.First().Append("Остаток");
+                                Table.Rows[0].Cells[4].Paragraphs.First().Append("Списание");
+                                Table.Rows[0].Cells[5].Paragraphs.First().Append("Причина");
+
+                                document.InsertTable(Table);
+
+                                // Документ создан:  
+                                Xceed.Document.NET.Paragraph Responsibility = document.InsertParagraph("Подпись ответсвенного по отчёту: _______");
+                                Responsibility.FontSize(11);
+                                Responsibility.Bold();
+                                Responsibility.Alignment = Alignment.right;
+                            }
+                            break;
+                        }
+
+                        document.Save();
+                    }
+
+                }
+                return 1;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("Dox Cenerl:\n"+ex.Message+"\n"+ex.InnerException+"\n"+ex.Source+"\n"+ex.StackTrace+"\n end.");
+                return -1;
+            }
+        }
+        public List<Warehouse> GetOperation()
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+            using (var connection = new SqlConnection(connectionString)) { return connection.Query<Warehouse>("SELECT * FROM Warehouse").ToList(); }
+        }
+
+        public List<Warehouse> GetWarehouse()
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+            using (var connection = new SqlConnection(connectionString)) { return connection.Query<Warehouse>("SELECT * FROM Warehouse").ToList(); }
+        }
+
         public List<Supplier> GetSuppliersList()
         {
             var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
@@ -207,21 +301,159 @@ namespace Model_Accounting_Warehouse.Modul
             comboBox.Items.Add("Да я");
             return comboBox;
         }
-
-        public int AddProduct()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Producticon"></param>
+        /// <param name="ProductName"></param>
+        /// <param name="ProductDescription"></param>
+        /// <param name="ProductCotigory"></param>
+        /// <param name="ProductStatus"></param>
+        /// <param name="ProductDeliveryDate"></param>
+        /// <param name="ProductPlace"></param>
+        /// <param name="ProductArePay"></param>
+        /// <param name="BayPrise"></param>
+        /// <param name="Register">true - если это товар с регестрацияей, false - если это поставка</param>
+        /// <returns></returns>
+        public int AddProduct(string Producticon, string ProductName, string ProductDescription, string ProductCotigory, string ProductStatus, string ProductDeliveryDate, string ProductPlace, string ProductArePay, string BayPrise, int ShopInfor_ID, int ProductSupplier_Id, bool Register = true)
         {
-            return 0;
+            try
+            {
+
+                Console.WriteLine
+                    (
+                    $"Producticon: {Producticon}\n" +
+                    $"ProductName: {ProductName}\n" +
+                    $"ProductCotigory: {ProductCotigory}\n" +
+                    $"ProductStatus: {ProductStatus}\n" +
+                    $"ProductDeliveryDate: {ProductDeliveryDate}\n" +
+                    $"ProductPlace: {ProductPlace}\n" +
+                    $"ProductArePay: {ProductArePay}\n" +
+                    $"BayPrise: {BayPrise}\n" +
+                    $"ProductDescription: {ProductDescription}\n"
+
+                    );
+
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+                if(string.IsNullOrEmpty(Producticon) || string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductDescription) || string.IsNullOrEmpty(ProductCotigory) || string.IsNullOrEmpty(ProductStatus) || 
+                  string.IsNullOrEmpty(ProductDeliveryDate) || string.IsNullOrEmpty(ProductPlace) || string.IsNullOrEmpty(ProductArePay) || string.IsNullOrEmpty(BayPrise) ) { return -7; }
+
+
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+
+
+                        var insertQuery = @"
+                INSERT INTO Products 
+                (Product_icon, Product_Name, Product_Description, Product_Cotigory, Product_Status, 
+                 Product_DeliveryDate, Product_Place, Product_Are_Pay, BayPrise, 
+                 ProductSupplierId, ShopInforID)
+                VALUES 
+                (@Product_icon, @Product_Name, @Product_Description, @Product_Cotigory, @Product_Status, 
+                 @Product_DeliveryDate, @Product_Place, @Product_Are_Pay, @BayPrise, 
+                 @ProductSupplierId, @ShopInforID)";
+
+                        connection.Execute(insertQuery,
+                            new
+                            {
+                                Product_icon = Producticon,
+                                Product_Name = ProductName,
+                                Product_Description = ProductDescription,
+                                Product_Cotigory = ProductCotigory,
+                                Product_Status = ProductStatus,
+                                Product_DeliveryDate = DateTime.Now.AddDays(0), 
+                                Product_Place = ProductPlace,
+                                Product_Are_Pay = ProductArePay,
+                                BayPrise = BayPrise,
+                                ProductSupplierId = ProductSupplier_Id,
+                                ShopInforID = ShopInfor_ID
+                            });
+
+                        var RegisterAndPostavka =
+                       @"INSERT INTO Operation (Id,TypeOperation,DataOperation,IdWarehouse,IdProduct)
+                         VALUES 
+                         (@Id,@TypeOperation,@DataOperation,@IdWarehouse,@IdProduct)";
+
+                        int IdOperation = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Operation");
+                        
+                        // Создал но забыл зачем... 
+                        int IdProduct = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Products");
+                        int IdWarehouse = connection.Execute("SELECT ISNULL(MAX(Id), 0) From ProductStatus");
+
+                        connection.Execute(RegisterAndPostavka,
+                            new
+                            {
+                                Id = IdOperation + 1,
+                                TypeOperation = 1,
+                                DataOperation = DateTime.Now.AddDays(0), // как-бы добовляем сегодняшную даду)
+                                IdWarehouse = ProductSupplier_Id,
+                                IdProduct = ShopInfor_ID,
+                            }
+                            );
+                        return 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("AddProduct(); Cenerl:\n" + ex.Message + "\n" + ex.InnerException + "\n" + ex.Source + "\n" + ex.StackTrace + "\n end.");
+                        return 0;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessegeBox(ex.Message, "Ошибка!");
+                return -1;
+            }
+
         }
 
         public int AddNewSupplier(string Name_Supplier) 
         {
-            return 0; 
+            try
+            {
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        var insertTableUserQuery =
+                        @"INSERT INTO Vacations (Product_icon,Product_Name,Product_Description,Product_Cotigory,Product_Remains,Product_Status, Product_DeliveryDate, Product_Place, Product_Are_Pay, BayPrise)
+                         VALUES 
+                         (@Product_icon, @Product_Name, @Product_Description, @Product_Cotigory, @Product_Remains, @Product_Status, @Product_DeliveryDate, @Product_Place, @Product_Are_Pay, @BayPrise)";
+
+                        connection.Execute(insertTableUserQuery,
+                            new
+                            {
+                                    
+                            }
+                            );
+                        return 1;
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessegeBox(ex.Message, "Ошибка!");
+                return -1;
+            }
         }
 
         /// <summary>
         /// Полностью сбрасывает базу данных
         /// </summary>
-        public void DropDataBase() 
+        public int DropDataBase() 
         {
             try
             {
@@ -242,19 +474,19 @@ namespace Model_Accounting_Warehouse.Modul
                     DELETE FROM ShopInfo;";
 
                         connection.Execute(insertTableUserQuery);
-
+                        return 1;
                     }
                     catch
                     {
-
+                        return -1;
                     }
-
 
                 }
             }
             catch (SqlException ex) 
             {
                 MessegeBox(ex.Message, "Ошибка!");
+                return -2;
             }
         }
         /// <summary>
@@ -282,10 +514,26 @@ namespace Model_Accounting_Warehouse.Modul
                 {
                     try
                     {
+
+                        Console.WriteLine
+                        (
+                            $"\n\n==============================\n" +
+                            $"\nShopName: {_NameShop}" +
+                            $"\nStreet: {_Street}" +
+                            $"\nINN: {_INN}"+
+                            $"\nKPP: {_KPP}" +
+                            $"\nBankAccount: {_BankAccount}" +
+                            $"\nBankName: {_BankName}" +
+                            $"\nBIK: {_BIK}" +
+                            $"\nLegalAddress: {_LegalAddress}" +
+                            $"\nPhone: {_Phone}" +
+                            $"\nEmail: {_Email}\n" +
+                            "\n\n=============================="
+                        );
                         // Валидация ИНН
                         Regex innRegex = new Regex(@"^\d{10}$|^\d{12}$");
                         // Валидация номера счета
-                        Regex accountRegex = new Regex(@"^\d{20}$");
+                        Regex accountRegex = new Regex(@"^\d{21}|^\d{20}$|^\d{19}|^\d{18}$");
                         // Валидация КПП
                         Regex kppRegex = new Regex(@"^\d{9}$");
                         // Валидация БИК
@@ -299,7 +547,7 @@ namespace Model_Accounting_Warehouse.Modul
                        
                         if (!kppRegex.IsMatch(_KPP.Trim())) { return - 5;}
 
-                        //  if (!accountRegex.IsMatch(_BankName.Trim()))  {   return - 4; }
+                        if (!accountRegex.IsMatch(_BankAccount.Trim()))  {   return - 4; }
 
 
                         if (!bikRegex.IsMatch(_BIK.Trim())) { return - 3; }
@@ -311,12 +559,12 @@ namespace Model_Accounting_Warehouse.Modul
                         if (!emailRegex.IsMatch(_Email.Trim())) { return - 1; }
 
                         connection.Open();
-                        var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM ShopInfo";
+                        var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM Warehouse";
                         int maxId = connection.ExecuteScalar<int>(maxIdQuery);
                         int newId = maxId + 1;
 
                         var insertTableUserQuery = @"
-                 INSERT INTO ShopInfo (Id, Street, Sales, INN, KPP, BankAccount, BankName, BIK, LegalAddress, Phone, Email)
+                 INSERT INTO Warehouse (Id, Street, Sales, INN, KPP, BankAccount, BankName, BIK, LegalAddress, Phone, Email)
                  VALUES 
                  (@Id, @Street, @Sales,   @INN, @KPP, @BankAccount,  @BankName, @BIK,@LegalAddress, @Phone, @Email)";
 
@@ -324,7 +572,7 @@ namespace Model_Accounting_Warehouse.Modul
                         {
                             Id = newId,
                             Street = _Street,
-                            Sales = 0, // По умолчанию 0 - так как при создании магазин не мог ничего заработать
+                            Sales = 0, // По умолчанию 0 - так как при создании магазин / склад не мог ничего заработать
                             INN = _INN,
                             KPP = _KPP,
                             BankAccount = _BankAccount,
@@ -353,7 +601,7 @@ namespace Model_Accounting_Warehouse.Modul
             }
         }
         // ЧТО-БЫ УДАЛИТЬ / ЗАКРЫТЬ МАГАЗИН - НУЖНО БУДЕТ СБРОСИТЬ КАК И СКАЛАД ТАК И ВСЕХ СОТРУДНИКОВ!
-        public void DropShop(int IdShop) // IdShop - Назначаеться из выподающего списка.
+        public int DropWarehouse(int Id_Warehouse) // IdShop - Назначаеться из выподающего списка.
         {
             try
             {
@@ -366,26 +614,25 @@ namespace Model_Accounting_Warehouse.Modul
                         connection.Open();
 
                         var insertTableUserQuery = @"
-                    DELETE FROM LogTable WHERE Info_Shop = @ID;
+                        DELETE FROM UserInfo WHERE Info_Shop = @ID;
+                        DELETE FROM Products WHERE ShopInforID = @ID;
+                        DELETE FROM Warehouse WHERE Id= @ID; 
+                        DELETE FROM Operation Where IdWarehouse = @ID;";
 
-                    DELETE FROM Products WHERE ShopInfor = @ID;
-
-                    DELETE FROM ShopInfo WHERE Id = @ID;";
-
-                        connection.Execute(insertTableUserQuery, new { ID = IdShop });
-
+                        connection.Execute(insertTableUserQuery, new { ID = Id_Warehouse });
+                        return 1;
                     }
-                    catch
+                    catch (Exception ex)
                     {
-
+                        Console.WriteLine($"\nStackTrace: {ex.StackTrace} |\nInnerException: {ex.InnerException} |\nData: {ex.Data}");
+                        return 0;
                     }
-
 
                 }
             }
             catch (Exception ex) 
             {
-
+                return -1;
             }
             }
 
@@ -442,7 +689,14 @@ namespace Model_Accounting_Warehouse.Modul
         /// <param name="UsetSname"></param>
         /// <param name="SMNamse"></param>
         /// <param name="Are"></param>
-        public void CreateUser(string Docement, string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "", int Are = 20)
+        /// <returns>
+        ///  1 - Всё прошло по плану 
+        /// -1 было найдено больша 1 акаунта с данным логином
+        ///  0 нет подключание к базе данных
+        /// -5 обработана ошибка - SqlException 
+        /// -6 не изветсная ошибка
+        /// </returns>
+        public int CreateUser(string Docement, string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "", int Are = 20)
         {
             try
             {
@@ -457,22 +711,22 @@ namespace Model_Accounting_Warehouse.Modul
 
 
                         var LogInTry = connection.Query<LogTable>("SELECT Log_In FROM LogTable where Log_In = @UserName", new { UserName = LogIn });
-                        if (LogInTry.Count() > 0) { MessegeBox("Данный Логин уже сущесвует!", "Ошибка при создании"); return; }
+                        if (LogInTry.Count() > 0) {MessegeBox("Данный Логин уже сущесвует!", "Ошибка при создании"); return -1; }
 
                         var ChechDocument = @"SELECT Pasport FROM UserInfo where Pasport = @Pasport";
                         int ChechDocumentId = connection.ExecuteScalar<int>(ChechDocument,new { Pasport = Docement });
                         if(ChechDocumentId != 0)
                         {
                             MessageBox.Show("Данный пасторт уже введён в базу данных сети", "Отказанно",
-                                       MessageBoxButton.OK, MessageBoxImage.Error); return; }
+                                       MessageBoxButton.OK, MessageBoxImage.Error); return-2; }
 
                         var maxIdQuery = @"SELECT ISNULL(MAX(Id), 0) FROM UserInfo";
                         int maxId = connection.ExecuteScalar<int>(maxIdQuery);
                         int newId = maxId + 1;
 
                         var insertTableInfoQuery = @"
-                INSERT INTO UserInfo (Id, Avotar, Post, Employee_Name, Last_Name, Patronymic, Age, Pasport)
-                VALUES (@Id,@Avotar, @Post, @Employee_Name, @Last_Name, @Patronymic, @Age, @Pasport)";
+                INSERT INTO UserInfo (Id, Avotar, Post, Employee_Name, Last_Name, Patronymic, Age, Pasport, Info_Shop)
+                VALUES (@Id,@Avotar, @Post, @Employee_Name, @Last_Name, @Patronymic, @Age, @Pasport,  @Info_Shop)";
 
                         string userPost = GetPositionFromComboBoxIndex(PositionComboBox);
 
@@ -480,17 +734,18 @@ namespace Model_Accounting_Warehouse.Modul
                         {
                             Id = newId,
                             Post = userPost,
-                            Avotar = "C:\\Users\\Asus\\Downloads\\avatardefault_92824.png",
+                            Avotar = "",
                             Employee_Name = UserName.Trim(),
                             Last_Name = UsetSname.Trim(),
                             Patronymic = SMNamse.Trim(),
                             Age = Are,
-                            Pasport = Docement
+                            Pasport = Docement,
+                            Info_Shop = 1 // Как стандартый индекс (Будет изменён!) ДОЛЖЕН БЫТЬ ИЗМЕНЁН!
                         });
 
                         var insertTableUserQuery = @"
-                INSERT INTO LogTable (Log_In, Password_User, UserInfoId,Info_Shop)
-                VALUES (@Log_In, @Password_User, @UserInfoId, @Info_Shop)";
+                INSERT INTO LogTable (Log_In, Password_User, UserInfoId)
+                VALUES (@Log_In, @Password_User, @UserInfoId)";
 
                         string password = SHIFT("Password", Password);
 
@@ -499,11 +754,11 @@ namespace Model_Accounting_Warehouse.Modul
                             Log_In = LogIn.Trim(),
                             Password_User = password,
                             UserInfoId = newId,
-                            Info_Shop = 1 // Как стандартый индекс
                         });
 
                         MessageBox.Show("Новый сотрудник был успешно добавлен!", "Успешно!",
                                        MessageBoxButton.OK, MessageBoxImage.Information);
+                        return 1;
                     }
                     catch (SqlException ex)
                     {
@@ -519,14 +774,16 @@ namespace Model_Accounting_Warehouse.Modul
                     });
                     }
                 }
+                return 0;
             }
             catch (SqlException ex)
             {
-                MessegeBox(ex.Message + ex.StackTrace, "Ошибка!");
+                return -5;
             }
             catch (Exception ex)
             {
-                MessegeBox(ex.Message+ ex.StackTrace, "Ошибка!");
+
+                return -6;
             }
         }
 
@@ -612,6 +869,7 @@ namespace Model_Accounting_Warehouse.Modul
                 else
                 {
                     MessageBox.Show("Неизвестный случай, смотрите логирование", "Отказано", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
                     return -5;
                 }
             }
@@ -702,6 +960,7 @@ namespace Model_Accounting_Warehouse.Modul
                 return "Гость";
             }
         }
+        
         /// <summary>
         /// Вернёт таблицу в полном её объёме
         /// </summary>
@@ -740,9 +999,6 @@ namespace Model_Accounting_Warehouse.Modul
                 Width = new DataGridLength(130)
             };
         }
-
-
-
         #region Обработка данных с Продукции
         private DataGridTextColumn Entity(string type, string columnNameSQL, string columnNameProgramm) 
         {
@@ -767,7 +1023,7 @@ namespace Model_Accounting_Warehouse.Modul
                 string cleanColumnName = Path.StartsWith("@")
                     ? Path.Substring(1)
                     : Path;
-                    Image image = new Image() { Source = new BitmapImage(new Uri(Path)) };
+                System.Windows.Controls.Image image = new System.Windows.Controls.Image() { Source = new BitmapImage(new Uri(Path)) };
 
 
                 DataGridTextColumn column = new DataGridTextColumn
@@ -845,26 +1101,56 @@ namespace Model_Accounting_Warehouse.Modul
 
         #endregion
 
-
         /// <summary>
         /// Быстрый запрос к таблице с продуктами, с группировкой данных
         /// </summary>
         /// <param name="orderBy"> Имя столбца по которой идёт группировка </param>
         /// <returns>Все данные с таблицы Products / Продукты </returns>
-        public List<Products> LoadProductsData(string orderBy = "Id")
+        public List<Products> LoadProductsData(string orderBy = "Id", string LogIn = "Admin")
         {
             try
             {
-                var connectionString = $"Server={NameServers};DataBase={NameBasaData};Trusted_connection=True;TrustServerCertificate=True;";
+                var connectionString = $"Server={NameServers};Database={NameBasaData};Trusted_Connection=True;TrustServerCertificate=True;";
 
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    string query = $"SELECT * FROM Products ORDER BY {orderBy}";
-                    var products = connection.Query<Products>(query);
+                    // 1. Сначала ОБНОВЛЯЕМ статусы (если дата прошла)
+                    string updateQuery = @"
+                UPDATE Products 
+                SET Product_Status = 'В наличии'
+                WHERE ShopInforID IN ( 
+                    SELECT Info_Shop 
+                    FROM UserInfo ui
+                    JOIN LogTable lt ON lt.UserInfoId = ui.Id
+                    WHERE lt.Log_In = @LogIn
+                ) 
+                AND Product_DeliveryDate < CAST(GETDATE() AS DATE)
+                AND Product_Status = 'Ожидается'";
 
-                    connection.Close();
+                    connection.Execute(updateQuery, new { LogIn = LogIn });
+
+                    // 2. Потом ЗАГРУЖАЕМ данные
+                    // Проверяем безопасность параметра orderBy
+                    string safeOrderBy = IsValidOrderBy(orderBy) ? orderBy : "Id";
+
+                    string selectQuery = @"
+                SELECT * 
+                FROM Products prd 
+                WHERE prd.ShopInforID IN (
+                    SELECT Info_Shop 
+                    FROM UserInfo ui 
+                    WHERE ui.Id IN ( 
+                        SELECT UserInfoId 
+                        FROM LogTable lt 
+                        WHERE lt.Log_In = @LogIn
+                    )
+                ) 
+                ORDER BY " + safeOrderBy;
+
+                    var products = connection.Query<Products>(selectQuery, new { LogIn = LogIn });
+
                     return products.ToList();
                 }
             }
@@ -876,7 +1162,17 @@ namespace Model_Accounting_Warehouse.Modul
             }
         }
 
+        // Проверка, что orderBy безопасен (предотвращает SQL-инъекции)
+        private bool IsValidOrderBy(string orderBy)
+        {
+            var allowedColumns = new HashSet<string>
+    {
+        "Id", "Product_Name", "Product_Status",
+        "Product_DeliveryDate", "BayPrise", "Product_Place"
+    };
 
+            return allowedColumns.Contains(orderBy);
+        }
         /// <summary>
         /// Быстрый запрос к таблице с продуктами, с группировкой данных
         /// </summary>

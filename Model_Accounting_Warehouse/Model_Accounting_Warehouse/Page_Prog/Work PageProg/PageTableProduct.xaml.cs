@@ -28,7 +28,7 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         private ObservableCollection<Products> _products;
         public static MainWindow main = Application.Current.MainWindow as MainWindow;
         Modul.API_MENEGER_DATABASE _database = new Modul.API_MENEGER_DATABASE(main.Name_Server);
-        
+        public string NameLofin;
 
         Products Product;
         public PageTableProduct()
@@ -52,12 +52,12 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             // ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Icon, "Product_icon", "Изоброжение товара"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Name", "Название"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Description", "Описание"));
-            ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Remains", "Остаток на складе"));
+            ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Status", "Статус"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_DeliveryDate", "Дата последнего привоза"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Cotigory", "Отдел товара"));
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart, "Product_Place", "Место / Полка товара"));
 
-            ProductsGrid.ItemsSource = _database.LoadProductsData("Id");
+            ProductsGrid.ItemsSource = _database.LoadProductsData("Id", NameLofin);
 
         }
         // Старый варик :) 

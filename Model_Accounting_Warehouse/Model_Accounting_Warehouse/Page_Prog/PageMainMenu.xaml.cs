@@ -117,6 +117,13 @@ namespace Model_Accounting_Warehouse.Page_Prog
                     main.pageWork.FaierEmployeeInDataBase.IsEnabled = false;
                     main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, увальнение сотрудников";
                     break;
+                case "Кассир":
+                    main.pageWork.AddEmployeeInDataBase.IsEnabled = false;
+                    main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, на добовление новых сотрудников";
+
+                    main.pageWork.FaierEmployeeInDataBase.IsEnabled = false;
+                    main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, увальнение сотрудников";
+                    break;
                 case "Без прав":
                     main.pageWork.AddEmployeeInDataBase.IsEnabled = false;
                     main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, на добовление новых сотрудников";
@@ -136,7 +143,6 @@ namespace Model_Accounting_Warehouse.Page_Prog
 
         public void EnterProfil()
         {
-            var conections = $"Server={main.Name_Server};DataBase={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
             dATABASEAPI.NameBasaData = main.Name_Data_Base;
             if (NameUser.Text.Length <= 0) { MessageBox.Show("Имя не может быть пустым", "Ошибка входа в профиль администрации", MessageBoxButton.OK, MessageBoxImage.Error); }
             if (PasswordUser.Password.Length <= 0)
@@ -164,6 +170,7 @@ namespace Model_Accounting_Warehouse.Page_Prog
             {
                 case 1:
                     PostCorrect(Post);
+                    main.tableProduct.NameLofin = NameUser.Text;
                     main.PageControl.Content = main.pageWork;
                     break;
             }

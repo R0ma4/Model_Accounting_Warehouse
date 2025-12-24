@@ -1,0 +1,19 @@
+﻿<Page x:Class="Model_Accounting_Warehouse.Page_Prog.PageDropWareHouse"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageDropWareHouse">
+
+    <Grid>
+        <TextBlock Text="Выберета Склад для удаления" VerticalAlignment="Top" TextAlignment="Center" FontSize="36" Foreground="White"/>
+
+        <ComboBox x:Name="ComboBoxData" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="45" SelectedIndex="0" FontSize="18">
+            <ComboBoxItem Content="Выгрузка данных" FontSize="16" IsEnabled="False"/>
+        </ComboBox>
+        <Button x:Name="FrieWHButton" Content="Потвердить удаление склада" Background="#FF0020D0" Foreground="White" FontSize="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,10,14" Height="52" Width="286" Click="FrieWHButton_Click"/>
+    </Grid>
+</Page>

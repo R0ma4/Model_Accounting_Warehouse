@@ -44,3 +44,8 @@ D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Wareho
 D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\obj\Debug\Page_Prog\PageCreateShop.baml
 D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\obj\Debug\Page_Prog\Work PageProg\FierEmployee.g.cs
 D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\obj\Debug\Page_Prog\Work PageProg\FierEmployee.baml
+D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\bin\Debug\Xceed.Document.NET.dll
+D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\bin\Debug\Xceed.Drawing.NET.dll
+D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\bin\Debug\Xceed.Words.NET.dll
+D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\obj\Debug\Page_Prog\PageDropWareHouse.g.cs
+D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\obj\Debug\Page_Prog\PageDropWareHouse.baml

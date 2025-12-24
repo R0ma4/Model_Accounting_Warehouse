@@ -17,9 +17,9 @@ namespace Model_Accounting_Warehouse.Modul
     {
         #region Очень важные переменные
 
-        protected string Begraund;
-        protected Color Fontgund;
-        protected Color ButtonGraud;
+        protected string Begraund = "#000034";
+        protected string Fontgund = "#FF0800";
+        protected string ButtonGraud = "#E3B505";
 
 
         #endregion
@@ -163,10 +163,10 @@ namespace Model_Accounting_Warehouse.Modul
                     Begraund = value;
                     break;
                 case "PROGRAM_FRAGEGROUND":
-                    Fontgund = (Color)ColorConverter.ConvertFromString(value);
+                    Fontgund = value;
                     break;
                 case "PROGRAM_BUTTON":
-                    ButtonGraud = (Color)ColorConverter.ConvertFromString(value);
+                    ButtonGraud = value;
                     break;
                 default:
                     ShowParameterError(key, "Window");
@@ -370,27 +370,27 @@ namespace Model_Accounting_Warehouse.Modul
                         Console.WriteLine($"Element Correct: {element.Name ?? element.GetType().Name} : {element.GetType().Name} Color: [ ButtonGraud = {ButtonGraud}| Fontgund = {Fontgund} | Begraund = {Begraund}] ");
                         if (element is Button button)
                         {
-                            button.Background = new SolidColorBrush(ButtonGraud);
-                            button.Foreground = new SolidColorBrush(Fontgund);
+                            button.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Begraund));// Begraund - string
+                            button.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                         if (element is TextBlock textBlock)
                         {
-                            textBlock.Foreground = new SolidColorBrush(Fontgund);
+                            textBlock.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                         if (element is TextBox textbox)
                         {
-                            textbox.Background = new SolidColorBrush(ButtonGraud);
-                            textbox.Foreground = new SolidColorBrush(Fontgund);
+                            textbox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ButtonGraud));
+                            textbox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                         if (element is ComboBox comboBox)
                         {
-                            comboBox.Background = new SolidColorBrush(ButtonGraud);
-                            comboBox.Foreground = new SolidColorBrush(Fontgund);
+                            comboBox.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString(ButtonGraud));
+                            comboBox.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                         if (element is ComboBoxItem comboBoxItem)
                         {
                             // comboBoxItem.Background = new SolidColorBrush(Begraund);
-                            comboBoxItem.Foreground = new SolidColorBrush(Fontgund);
+                            comboBoxItem.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                         if (element is Grid grid_color)
                         {
@@ -399,13 +399,13 @@ namespace Model_Accounting_Warehouse.Modul
                         if (element is Menu menu)
                         {
                          //   menu.Background = new SolidColorBrush(Begraund);
-                            menu.Foreground = new SolidColorBrush(Fontgund);
+                            menu.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
 
                         if (element is MenuItem menuItem)
                         {
                           //  menuItem.Background = new SolidColorBrush(Begraund);
-                            menuItem.Foreground = new SolidColorBrush(Fontgund);
+                            menuItem.Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString(Fontgund));
                         }
                     }
                 }

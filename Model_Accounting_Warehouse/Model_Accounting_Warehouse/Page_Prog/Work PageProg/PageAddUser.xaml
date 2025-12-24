@@ -169,26 +169,15 @@ BorderBrush="#FF505050"/>
                         </StackPanel>
                     </Border>
                 </TreeViewItem>
-                <TreeViewItem Header="Роль" Foreground="White">
-                    <!-- Блок 3: Должность и права -->
+                <TreeViewItem Header="Роль и Место работы" Foreground="White">
                     <Border BorderBrush="#FF404040" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,0,0,20">
                         <StackPanel>
                             <TextBlock Text="Права доступа" Foreground="#FF007ACC" FontSize="16" FontWeight="Bold" Margin="0,0,0,10"/>
 
                             <!-- Должность -->
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                                <TextBlock Text="Должность:" 
-                         Width="200" 
-                         Foreground="White" 
-                         FontSize="16" 
-                         VerticalAlignment="Center"/>
-                                <ComboBox x:Name="PositionComboBox" 
-                        Width="400" 
-                        Height="30" 
-                        FontSize="14"
-                        Background="#FF2D2D2D"
-                        Foreground="White"
-                        BorderBrush="#FF505050">
+                                <TextBlock Text="Должность:"  Width="200"  Foreground="White"  FontSize="16" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="PositionComboBox" Width="400" Height="30" FontSize="14" Background="#FF2D2D2D"  Foreground="Black" BorderBrush="#FF505050">
                                     <ComboBoxItem Content="Администратор" IsSelected="True"/>
                                     <ComboBoxItem Content="Менеджер"/>
                                     <ComboBoxItem Content="Кассир"/>
@@ -196,8 +185,14 @@ BorderBrush="#FF505050"/>
                                     <ComboBoxItem Content="Гость"/>
                                 </ComboBox>
                             </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                <TextBlock Text="Магазин / Склад: "  Width="200"  Foreground="White"  FontSize="16" VerticalAlignment="Center"/>
+                                <ComboBox x:Name="IndexShopComboBox" Width="400" SelectedIndex="0" Height="30" FontSize="14" Background="#FF2D2D2D"  Foreground="Black" BorderBrush="#FF505050">
+                                    <ComboBoxItem Content="Загрузка..." IsEnabled="False" />
+                                </ComboBox>
+                            </StackPanel>
 
-                           
+
                         </StackPanel>
                     </Border>
 

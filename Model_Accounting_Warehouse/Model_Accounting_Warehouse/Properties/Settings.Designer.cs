@@ -22,5 +22,17 @@ namespace Model_Accounting_Warehouse.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("24.12.2025")]
+        public string DataFinal {
+            get {
+                return ((string)(this["DataFinal"]));
+            }
+            set {
+                this["DataFinal"] = value;
+            }
+        }
     }
 }
