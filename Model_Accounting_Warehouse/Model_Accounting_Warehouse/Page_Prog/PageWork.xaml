@@ -19,8 +19,8 @@
                 <MenuItem x:Name="SaveToModul" Header="Создать новый модуль" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="SaveFile" Header="Сохронить" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="OpenFile" Header="Открыть" Click="ClickButtonEvert"/>
-                <MenuItem x:Name="ImportFile" Header="Импортировать" Click="ClickButtonEvert"/>
-                <MenuItem x:Name="ExtoprtFile" Header="Экспортировать" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="ImportFile" Header="Импортировать doc отчёт" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="ExtoprtFile" Header="Экспортировать doc отчёт" Click="ClickButtonEvert" IsEnabled="False"/>
             </MenuItem>
             <MenuItem Header="Вид">
                 <MenuItem Header="Создать новый модуль"/>
@@ -33,17 +33,18 @@
                 <MenuItem x:Name="ExitProgramm" Header="Выход" Click="ClickButtonEvert" />
             </MenuItem>
             <MenuItem x:Name="ProductControl" Header="Товары">
-                <MenuItem x:Name="CreateNewProduct" Header="Создать новый товар" Click="ClickButtonEvert"/>
-                <MenuItem x:Name="RedactProduct" Header="Редактировать созданный товар" Click="ClickButtonEvert"/>
-                <MenuItem x:Name="UpdateProduct" Header="Обновить список товара" Click="ClickButtonEvert"/>
-                <MenuItem x:Name="BayNewProduct"  Header="Заказать новую поставку для товара"/>
-                <MenuItem x:Name="CreateDocementProduct" Header="Создать отчёт о ведении товара"/>
-                <MenuItem x:Name="OpenDocementProduct" Header="Открыть отчёт о ведении товара"/>
+                <MenuItem x:Name="UpdateProduct" Header="Обновить Таблицу Товаров" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="CreateNewProduct" Header="Закзать товар" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="RedactProduct" Header="Принять все товары" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="DropProduct" Header="Списать товары" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="CreateDocementProduct" Header="Создать отчёт о ведении товара Excel таблица"/>
+                <MenuItem x:Name="OpenDocementProduct" Header="Открыть отчёт о ведении товара Excel таблица"/>
             </MenuItem>
             <MenuItem x:Name="CompanyControl" Header="Организация" >
                 <MenuItem x:Name="ReCorrectDataBase"  Header="Переподключиться к Базе Данных" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="DropCorrectDataBase"  Header="Сбросить потключение к базе данных" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="CorrectDataBase"  Header="Подключиться к базе данных" Click="ClickButtonEvert"/>
+                <MenuItem x:Name="AddWareHouse"  Header="Открыть новый склад" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="ConectCorrectDataBase" Header="Создать перепесь с уже сущесвующей Базы данных" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="AddEmployeeInDataBase"  Header="Добавить нового сотрудника" Click="ClickButtonEvert"/>
                 <MenuItem x:Name="FaierEmployeeInDataBase" Header="Убрать сотрудника" Click="ClickButtonEvert"/>

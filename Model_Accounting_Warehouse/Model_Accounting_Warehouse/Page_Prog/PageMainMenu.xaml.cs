@@ -153,7 +153,7 @@ namespace Model_Accounting_Warehouse.Page_Prog
                 return;
             }
 
-            Console.WriteLine($"{dATABASEAPI.UserPost(NameUser.Text, PasswordUser.Password)} - Пост пользователя");
+            // Console.WriteLine($"{dATABASEAPI.UserPost(NameUser.Text, PasswordUser.Password)} - Пост пользователя");
             int KeyEnteProfil = dATABASEAPI.LogIn(NameUser.Text, PasswordUser.Password);
             Console.WriteLine("Ключ входа в профиль: " + KeyEnteProfil);
 
@@ -170,8 +170,16 @@ namespace Model_Accounting_Warehouse.Page_Prog
             {
                 case 1:
                     PostCorrect(Post);
+                    foreach (var item in dATABASEAPI.GetIdWarehouse(NameUser.Text))
+                    {
+                        main.ID_WareHouse = item.Info_Shop;
+                        Console.WriteLine($"main.ID_WareHouse = {main.ID_WareHouse}");
+                    }
                     main.tableProduct.NameLofin = NameUser.Text;
                     main.PageControl.Content = main.pageWork;
+                    break;
+                case -3: 
+                    
                     break;
             }
 

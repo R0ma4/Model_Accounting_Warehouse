@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
@@ -132,9 +133,9 @@ namespace Model_Accounting_Warehouse.Modul
         #endregion
         // В классе API_MENEGER_DATABASE добавьте:
 
-        public int DoxOperation(int IdWareHouse)
+        public int DoxOperation(int IdWareHouse, string filePath = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Rouls\Docum.docx")
         {
-            string filePath = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Rouls\Docum.docx";
+            
             var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
 
             try 
@@ -142,18 +143,22 @@ namespace Model_Accounting_Warehouse.Modul
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Query<Operation>("SELECT * FROM Operation");
-                    int coint_cotigori = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi");
-                    int coint_operation = connection.Execute("SELECT * FROM Operation");
-                    int coint_register_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 1");
-                    int coint_drop_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 and TypeOperation = 3 and TypeOperation = 4");
-                    int coint_finqldata_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2");
-                    int coint_theft_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 3");
-                    int coint_nocotigor_product = connection.Execute("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 4");
+                    int coint_cotigori = connection.ExecuteScalar<int>("SELECT * FROM Operation  as opi Where IdWarehouse = @IDWH",new { IDWH = IdWareHouse});
+                    int coint_operation = connection.ExecuteScalar<int>("SELECT * FROM Operation Where IdWarehouse = @IDWH",new { IDWH = IdWareHouse});
+                    int coint_register_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 1 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_drop_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 or TypeOperation = 3 or TypeOperation = 4 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_finqldata_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_theft_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 3 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_nocotigor_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 4 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
                     
                     var Warehouse = connection.Query<Warehouse>("SELECT * From Warehouse where id = @Id", new { Id = IdWareHouse}).ToList();
                     string NameWarehouse = string.Empty;
 
-                    if(coint_cotigori < 0) { coint_cotigori = coint_cotigori * -1; }
+                    Console.WriteLine(
+                        "Dox Data\n" +
+                        $"coint_cotigori: {coint_cotigori}"
+                        );
+
                     using (DocX document = DocX.Create(filePath))
                     {
                         foreach (var item in Warehouse) 
@@ -229,6 +234,26 @@ namespace Model_Accounting_Warehouse.Modul
                 return -1;
             }
         }
+
+        public List<UserInfo> GetIdWarehouse(string LogIn) 
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+            using (var connection = new SqlConnection(connectionString)) { return connection.Query<UserInfo>(" SELECT ui.Info_Shop From UserInfo as ui where id = (select lt.UserInfoId From LogTable as lt where Log_In = @LOG)", new { LOG = LogIn }).ToList(); }
+        }
+
+        public List<Products> GetProductsInStock(int ShopInfor_ID)
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+            using (var connection = new SqlConnection(connectionString)) { return connection.Query<Products>("SELECT * From Products  where ShopInforID = @InforID and Product_Status = 'В наличии'", new { InforID = ShopInfor_ID }).ToList(); }
+        }
+
+        public List<Products> GetProducts() 
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
+            using (var connection = new SqlConnection(connectionString)) { return connection.Query<Products>("SELECT * FROM Products").ToList(); }
+        }
+
+
         public List<Warehouse> GetOperation()
         {
             var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
@@ -319,6 +344,7 @@ namespace Model_Accounting_Warehouse.Modul
         {
             try
             {
+                BayPrise = BayPrise.Replace(" ", null);
 
                 Console.WriteLine
                     (
@@ -364,7 +390,7 @@ namespace Model_Accounting_Warehouse.Modul
                                 Product_Name = ProductName,
                                 Product_Description = ProductDescription,
                                 Product_Cotigory = ProductCotigory,
-                                Product_Status = ProductStatus,
+                                Product_Status = "Ожидаеться",
                                 Product_DeliveryDate = DateTime.Now.AddDays(0), 
                                 Product_Place = ProductPlace,
                                 Product_Are_Pay = ProductArePay,
@@ -374,24 +400,24 @@ namespace Model_Accounting_Warehouse.Modul
                             });
 
                         var RegisterAndPostavka =
-                       @"INSERT INTO Operation (Id,TypeOperation,DataOperation,IdWarehouse,IdProduct)
+                       @"INSERT INTO Operation (Id,TypeOperation,Coint,DataOperation,IdWarehouse,IdProduct)
                          VALUES 
-                         (@Id,@TypeOperation,@DataOperation,@IdWarehouse,@IdProduct)";
+                         (@Id,@TypeOperation,@Coint,@DataOperation,@IdWarehouse,@IdProduct)";
 
                         int IdOperation = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Operation");
                         
                         // Создал но забыл зачем... 
                         int IdProduct = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Products");
-                        int IdWarehouse = connection.Execute("SELECT ISNULL(MAX(Id), 0) From ProductStatus");
 
                         connection.Execute(RegisterAndPostavka,
                             new
                             {
                                 Id = IdOperation + 1,
                                 TypeOperation = 1,
+                                Coint = 12,
                                 DataOperation = DateTime.Now.AddDays(0), // как-бы добовляем сегодняшную даду)
                                 IdWarehouse = ProductSupplier_Id,
-                                IdProduct = ShopInfor_ID,
+                                IdProduct = IdProduct,
                             }
                             );
                         return 1;
@@ -643,39 +669,51 @@ namespace Model_Accounting_Warehouse.Modul
         {
             try
             {
-                Regex DateFormatRegex =  new Regex(@"^\d{2} \d{2} \d{4}$", RegexOptions.Compiled); 
+                Regex DateFormatRegex = new Regex(@"^\d{2} \d{2} \d{4}$", RegexOptions.Compiled);
 
-                if(!DateFormatRegex.IsMatch(Namber_Pasport.Trim())) { return -1;  }
+                if (!DateFormatRegex.IsMatch(Namber_Pasport.Trim()))
+                {
+                    return -1;
+                }
 
-                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_Connection=True;TrustServerCertificate=True;";
 
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
+                    var LogProfil = @"SELECT logs.UserInfoId FROM LogTable as logs where logs.UserInfoId = (Select Id FROM UserInfo WHERE Pasport = @Pasport)";
+                    int Llogcount = connection.ExecuteScalar<int>(LogProfil, new { Pasport = Namber_Pasport });
 
-                    var Shin = @"SELECT Pasport FROM UserInfo where Pasport = @Pasport";
 
-                   bool Corrects = connection.ExecuteScalar<int>(Shin, new { Pasport = Namber_Pasport }) == 1;
+                    var checkQuery = @"SELECT COUNT(1) FROM UserInfo WHERE Pasport = @Pasport";
+                    int count = connection.ExecuteScalar<int>(checkQuery, new { Pasport = Namber_Pasport });
 
-                    if(Corrects) 
+                    if (count > 0)
                     {
-                        var insertTableUserQuery = @"DELETE FROM UserInfo where Pasport = @Pasport";
+                        var deleteQuery = @"DELETE FROM LogTable where UserInfoId = (Select Id FROM UserInfo WHERE Pasport = @Pasport)";
+                        int rowsAffected = connection.Execute(deleteQuery, new { Pasport = Namber_Pasport });
 
-                        var Correct = connection.Execute(insertTableUserQuery, new { Pasport = Namber_Pasport });
-                        return 1;
+                        var deleteQuery1 = @"DELETE FROM UserInfo WHERE Pasport = @Pasport";
+                        int rowsAffected1 = connection.Execute(deleteQuery1, new { Pasport = Namber_Pasport });
+
+                        return rowsAffected > 0 ? 1 : -2;
                     }
-                    else {  return -1; }
+                    else
+                    {
+                        return -2;
+                    }
                 }
             }
             catch (SqlException ex)
             {
-                MessegeBox(ex.Message, "Ошибка!");
+                MessageBox.Show(ex.Message, "Ошибка!");
+                return -3;
             }
             catch (Exception ex)
             {
-                MessegeBox(ex.Message+ ex.StackTrace, "Ошибка!");
+                // MessageBox.Show($"{ex.Message}\n{ex.StackTrace}", "Ошибка!");
+                return -4;
             }
-            return 0;
         }
 
         /// <summary>
@@ -696,7 +734,7 @@ namespace Model_Accounting_Warehouse.Modul
         /// -5 обработана ошибка - SqlException 
         /// -6 не изветсная ошибка
         /// </returns>
-        public int CreateUser(string Docement, string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "", int Are = 20)
+        public int CreateUser(string Docement, string LogIn, string Password,int PositionComboBox, string UserName, string UsetSname, string SMNamse = "", int Are = 20, int WareHouseID = 1)
         {
             try
             {
@@ -740,7 +778,7 @@ namespace Model_Accounting_Warehouse.Modul
                             Patronymic = SMNamse.Trim(),
                             Age = Are,
                             Pasport = Docement,
-                            Info_Shop = 1 // Как стандартый индекс (Будет изменён!) ДОЛЖЕН БЫТЬ ИЗМЕНЁН!
+                            Info_Shop = WareHouseID 
                         });
 
                         var insertTableUserQuery = @"
@@ -841,13 +879,12 @@ namespace Model_Accounting_Warehouse.Modul
                         Console.WriteLine($"Пароль из БД: {item.Password_User}");
 
                         var UserInfo = connection.QueryFirstOrDefault<UserInfo>(
-                            "SELECT ui.Last_Name FROM UserInfo ui WHERE ui.Id = @Id",
+                            "SELECT * FROM UserInfo ui WHERE ui.Id = @Id",
                             new { Id = item.UserInfoId});
 
                         if (UserInfo != null)
                         {
                             NameUserDiolog = $"{UserInfo.Last_Name}. {UserInfo.Employee_Name[0]}. {UserInfo.Patronymic[0]}.";
-                         
                         }
                     }
 
@@ -858,17 +895,17 @@ namespace Model_Accounting_Warehouse.Modul
                 }
                 else if (loginExists && !passwordCorrect)
                 {
-                    MessageBox.Show("Неверный пароль!", "Отказано",MessageBoxButton.OK, MessageBoxImage.Error);
+                    Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
                     return -1;
                 }
                 else if (!loginExists)
                 {
-                    MessageBox.Show("Неверный логин!", "Отказано", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
                     return -2;
                 }
                 else
                 {
-                    MessageBox.Show("Неизвестный случай, смотрите логирование", "Отказано", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
                     Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
                     return -5;
                 }
@@ -891,27 +928,6 @@ namespace Model_Accounting_Warehouse.Modul
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    // ВАРИАНТ 1: Через JOIN (рекомендуется)
-                    string post = connection.QueryFirstOrDefault<string>(@"
-                SELECT ui.Post 
-                FROM LogTable lt
-                INNER JOIN UserInfo ui ON lt.UserInfoId = ui.Id
-                WHERE lt.Log_In = @UserName AND lt.Password_User = @Password",
-                        new
-                        {
-                            UserName = Login,
-                            Password = new_password
-                        });
-
-                    if (!string.IsNullOrEmpty(post))
-                    {
-                        Console.WriteLine($"Должность пользователя {Login}: {post}");
-                        return post;
-                    }
-
-                    // ВАРИАНТ 2: Если JOIN не сработал, проверяем шаг за шагом
-                    Console.WriteLine("JOIN не дал результата, проверяем вручную...");
 
                     // 1. Проверяем, есть ли пользователь в LogTable
                     var logTableUser = connection.QueryFirstOrDefault<dynamic>(
@@ -947,7 +963,7 @@ namespace Model_Accounting_Warehouse.Modul
                     }
                     else
                     {
-                        Console.WriteLine($"❌ Не найдена должность для UserInfoId={logTableUser.UserInfoId}");
+ 
                         return "Гость";
                     }
                 }
@@ -957,7 +973,7 @@ namespace Model_Accounting_Warehouse.Modul
                 Console.WriteLine($"❌ Ошибка в UserPost: {ex.Message}");
                 MessageBox.Show($"Ошибка получения прав: {ex.Message}", "Ошибка",
                     MessageBoxButton.OK, MessageBoxImage.Error);
-                return "Гость";
+                return "Без роли";
             }
         }
         

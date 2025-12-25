@@ -63,8 +63,9 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
             if(EAre < 16 || EAre > 60) { MessegeBox("Возрост рабочего, должен быть от 16 до 60 лет", "Ошибка регестрации пользователя"); return; }
             // Формат:  00 00 0000
 
+            int index_wh = IndexShopComboBox.SelectedIndex + 1;
 
-            dATABASEAPI.CreateUser(Document.Text, LoginTextBox.Text, PasswordBox.Password,PositionComboBox.SelectedIndex, NameTextBox.Text, SurnameTextBox.Text, MiddleNameTextBox.Text, int.Parse(Employee_Are.Text));
+            dATABASEAPI.CreateUser(Document.Text, LoginTextBox.Text, PasswordBox.Password,PositionComboBox.SelectedIndex, NameTextBox.Text, SurnameTextBox.Text, MiddleNameTextBox.Text, int.Parse(Employee_Are.Text), index_wh);
         }
         // MiddleNameTextBox
 

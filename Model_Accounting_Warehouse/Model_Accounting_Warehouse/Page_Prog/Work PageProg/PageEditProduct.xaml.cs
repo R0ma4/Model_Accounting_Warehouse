@@ -82,12 +82,15 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
         {
             try 
             {
-                int Key = aPI.AddProduct(Images, NameProductTextBox.Text, DescriptionProductTextBox.Text, CotogoryIndex(Cotigory.TabIndex), "Ожидается", "Жать, что оно ставиться автомотически..", Nuber.Text, ArePrise.Text, BayPrise.Text,1,1);
-
+                int Key = aPI.AddProduct(Images, NameProductTextBox.Text, DescriptionProductTextBox.Text, CotogoryIndex(Cotigory.SelectedIndex), "Ожидается", "Жал   ь, что оно ставиться автомотически..", Nuber.Text, ArePrise.Text, BayPrise.Text,main.ID_WareHouse,1);
+                Console.WriteLine($"KeyProduct = {Key}");
                 switch (Key) 
                 {
                     case 0:
-                        MessageBox.Show("Все элементы обязательно должны быть запелены!","Ошибка заказа",MessageBoxButton.OK,MessageBoxImage.Error);
+                        MessageBox.Show("Вызванно исключение, что не дало создать заказ. Смотрите логированние!","Ошибка заказа",MessageBoxButton.OK,MessageBoxImage.Error);
+                        break;
+                    case -7:
+                        MessageBox.Show("Ошибка оформления заказа, читайте логированнние", "Ошибка заказа", MessageBoxButton.OK, MessageBoxImage.Error);
                         break;
                     case -1:
                         MessageBox.Show("Ошибка оформления заказа, читайте логированнние", "Ошибка заказа", MessageBoxButton.OK, MessageBoxImage.Error);

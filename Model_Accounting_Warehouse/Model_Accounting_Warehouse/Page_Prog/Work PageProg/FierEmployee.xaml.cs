@@ -50,6 +50,9 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
                         case -1:
                             MessageBox.Show("Не верно введён паспорт!", "Отказанно", MessageBoxButton.OK, MessageBoxImage.Error);
                             break;
+                        default:
+                            MessageBox.Show(key.ToString(), "Отказанно", MessageBoxButton.OK, MessageBoxImage.Error);
+                            break ;
                     }
                 }
             }

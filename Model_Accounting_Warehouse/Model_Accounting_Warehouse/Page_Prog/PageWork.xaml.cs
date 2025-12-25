@@ -60,13 +60,18 @@ namespace Model_Accounting_Warehouse.Page_Prog
             switch (menuItem.Name)
             {
                 case "ImportFile":
+                    
                     DOX_Import();
                     break;
                 case "ExitProgramm":
-                    // main.PageControl.Content = main.mainpageMM;
+                    main.PageControl.Content = main.pageMainMenu;
                     break;
                 case "UpdateProduct":
-                    WorkPage.Content = main.tableProduct;
+                    WorkPage.Content = main.pageDropProduct;
+                    break;
+                case "DropProduct":
+                    //WorkPage.Content = main.tableProduct;
+                    main.pageDropProduct.Show();
                     break;
                 case "RedactProduct":
                     ModulWindowRedact.RedactPage redactPage = new ModulWindowRedact.RedactPage();

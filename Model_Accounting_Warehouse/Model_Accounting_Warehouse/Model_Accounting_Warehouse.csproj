@@ -119,6 +119,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Page_Prog\Work PageProg\Drop_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Page_Prog\Work PageProg\EditShop.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,6 +169,9 @@
     </Compile>
     <Compile Include="Page_Prog\PageWork.xaml.cs">
       <DependentUpon>PageWork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Page_Prog\Work PageProg\Drop_Product.xaml.cs">
+      <DependentUpon>Drop_Product.xaml</DependentUpon>
     </Compile>
     <Compile Include="Page_Prog\Work PageProg\EditShop.xaml.cs">
       <DependentUpon>EditShop.xaml</DependentUpon>

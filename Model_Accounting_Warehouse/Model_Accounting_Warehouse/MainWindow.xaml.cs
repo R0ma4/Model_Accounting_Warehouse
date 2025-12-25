@@ -134,14 +134,19 @@ namespace Model_Accounting_Warehouse
         public Page_Prog.PageCreateShop pageCreateShop;
         public Page_Prog.Work_PageProg.FierEmployee pageFierEmployee;
         public Page_Prog.PageDropWareHouse pageDropWareHouse;
+        public Page_Prog.PageMainMenu pageMainMenu;
+        public Page_Prog.PageDropWareHouse pageDropWare;
+        public Page_Prog.Work_PageProg.Drop_Product pageDropProduct;
+
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             var config = new ConfigurationReder.AppConfig();
 
+            pageDropProduct = new Page_Prog.Work_PageProg.Drop_Product();
             pageMM = new PageMainMenu();
             pageWork = new PageWork();
             pageLoad = new PageLoad();
-
+            pageMainMenu=new PageMainMenu();
             pageDropWareHouse = new PageDropWareHouse();
             pageFierEmployee = new Page_Prog.Work_PageProg.FierEmployee();
             pageEdit = new Page_Prog.Work_PageProg.PageEditProduct();
@@ -156,6 +161,7 @@ namespace Model_Accounting_Warehouse
             PageControl.Content = pageAddUser;
             PageControl.Content = pageLoad;
             PageControl.Content = pageEdit;
+
 
             // Reg.FixElement(pageMM.GridWindow); ИСПРОВЛЕНИЕ, [#000000 (Значения не приравневаються, возможно ставяться после создания ключа Rig - так как у них нет значения по умолчанию) ]
 
