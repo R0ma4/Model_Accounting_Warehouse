@@ -5,18 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Model_Accounting_Warehouse.Page_Prog.Work_PageProg"
         mc:Ignorable="d"
-        Title="Drop_Product" Height="450" Width="800">
+        Title="Drop_Product" MinHeight="450" MaxHeight="450" MinWidth="800" MaxWidth="800">
     <Grid>
         <TextBlock Text="Выберете товар который нужно списать:" FontSize="36"/>
         <ComboBox x:Name="ComboBoxDropProduct" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="18">
-            <ComboBoxItem Content="Выгрузка товаров из таблицы..." FontSize="18"/>
+            <ComboBoxItem Content="Выгрузка товаров из таблицы..." FontSize="18" MouseDown="ComboBoxItem_MouseDown"/>
         </ComboBox>
         <ComboBox x:Name="CotigoruDropProduct" SelectedIndex="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="18" Margin="3,256,0,0">
             <ComboBoxItem Content="По истечению срока годности" FontSize="18"/>
             <ComboBoxItem Content="По не соотсветвию" FontSize="18"/>
             <ComboBoxItem Content="По не довозу" FontSize="18"/>
+            <ComboBoxItem Content="Кража" FontSize="18"/>
         </ComboBox>
-
-        <Button Content="Потвердить списание" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="26" Margin="0,0,24,12"/>
+        <TextBox x:Name="CointText" Text="12" Margin="10,97,0,0" HorizontalAlignment="Left" MinWidth="270" FontSize="18" VerticalAlignment="Top" Height="47"/>
+        <Button Content="Потвердить списание" VerticalAlignment="Bottom" HorizontalAlignment="Right" FontSize="26" Margin="0,0,24,12" Click="DropProduct"/>
     </Grid>
 </Window>

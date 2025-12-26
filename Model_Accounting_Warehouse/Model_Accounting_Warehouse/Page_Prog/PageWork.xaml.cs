@@ -67,10 +67,9 @@ namespace Model_Accounting_Warehouse.Page_Prog
                     main.PageControl.Content = main.pageMainMenu;
                     break;
                 case "UpdateProduct":
-                    WorkPage.Content = main.pageDropProduct;
+                    WorkPage.Content = main.tableProduct;
                     break;
                 case "DropProduct":
-                    //WorkPage.Content = main.tableProduct;
                     main.pageDropProduct.Show();
                     break;
                 case "RedactProduct":

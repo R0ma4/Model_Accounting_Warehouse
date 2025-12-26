@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -133,6 +134,14 @@ namespace Model_Accounting_Warehouse.Modul
         #endregion
         // В классе API_MENEGER_DATABASE добавьте:
 
+
+
+        /// <summary>
+        /// DOX Генератор
+        /// </summary>
+        /// <param name="IdWareHouse"></param>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public int DoxOperation(int IdWareHouse, string filePath = @"D:\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Model_Accounting_Warehouse\Rouls\Docum.docx")
         {
             
@@ -143,13 +152,13 @@ namespace Model_Accounting_Warehouse.Modul
                 using (var connection = new SqlConnection(connectionString))
                 {
                     connection.Query<Operation>("SELECT * FROM Operation");
-                    int coint_cotigori = connection.ExecuteScalar<int>("SELECT * FROM Operation  as opi Where IdWarehouse = @IDWH",new { IDWH = IdWareHouse});
+                    int coint_cotigori = connection.ExecuteScalar<int>("SELECT COUNT(*) FROM Operation  as opi Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse});
                     int coint_operation = connection.ExecuteScalar<int>("SELECT * FROM Operation Where IdWarehouse = @IDWH",new { IDWH = IdWareHouse});
-                    int coint_register_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 1 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
-                    int coint_drop_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 or TypeOperation = 3 or TypeOperation = 4 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
-                    int coint_finqldata_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 2 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
-                    int coint_theft_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 3 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
-                    int coint_nocotigor_product = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(opi.TypeOperation), 0) FROM Operation as opi where TypeOperation = 4 Where IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_register_product = connection.ExecuteScalar<int>("SELECT ISNULL(COUNT(*),0) FROM Operation as opi where TypeOperation = 1 and IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_drop_product = connection.ExecuteScalar<int>("SELECT ISNULL(COUNT(*),0) FROM Operation as opi where TypeOperation = 2 or TypeOperation = 3 or TypeOperation = 4 and IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_finqldata_product = connection.ExecuteScalar<int>("SELECT ISNULL(COUNT(*),0) FROM Operation as opi where TypeOperation = 2 and IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_theft_product = connection.ExecuteScalar<int>("SELECT ISNULL(COUNT(*),0) FROM Operation as opi where TypeOperation = 3 and IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
+                    int coint_nocotigor_product = connection.ExecuteScalar<int>("SELECT ISNULL(COUNT(*),0) FROM Operation as opi where TypeOperation = 4 and IdWarehouse = @IDWH", new { IDWH = IdWareHouse });
                     
                     var Warehouse = connection.Query<Warehouse>("SELECT * From Warehouse where id = @Id", new { Id = IdWareHouse}).ToList();
                     string NameWarehouse = string.Empty;
@@ -180,7 +189,7 @@ namespace Model_Accounting_Warehouse.Modul
                                 title.Alignment = Alignment.center;
 
                                 Xceed.Document.NET.Paragraph Anotach = document.InsertParagraph("\n\n" +
-                                    $"Информация об хронение и продажах товаров на складе - хронявшейся в магазине по улице: \'\'. За периуд от \' \' до \'{DateTime.Now.ToString("dd.MM.yyyy")}\'\n" +
+                                    $"Информация об хронение и продажах товаров на складе - хронявшейся в магазине по улице: \'\'. За периуд всё время от открытия склада до \'{DateTime.Now.ToString("dd.MM.yyyy")}\'\n" +
                                     $"За данное время было операций: {coint_cotigori}.\n" +
                                     $"Проданно  - Едениц товара. Самый продоваеммый [NameProduct] / Чаще всего списывали (по просрочке) [NameProduct].\n" +
                                     $"{coint_drop_product} списаний:\n\n" +
@@ -473,6 +482,69 @@ namespace Model_Accounting_Warehouse.Modul
             {
                 MessegeBox(ex.Message, "Ошибка!");
                 return -1;
+            }
+        }
+
+        public int DropProduct(int IdWH, string Product_Name, int Product_NameId, int TypeOperation, int Coint)
+        {
+            try
+            {
+                int TypeOperationTable = 0;
+                switch (TypeOperation) 
+                {
+                    case 0:
+                        TypeOperationTable = 2;
+                        break;
+                    case 1:
+                        TypeOperationTable = 4;
+                        break;
+                    case 2:
+                        TypeOperationTable = 4;
+                        break;
+                    case 3:
+                        TypeOperationTable = 3;
+                        break;
+                }
+                var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
+                int ID = 1;
+                using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+
+                        connection.Open();
+
+                        int maxId = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(Id), 0) FROM Operation");
+                        int newId = maxId + 1;
+
+                        var UpdaterOp = "INSERT INTO Operation(Id, TypeOperation, Coint, DataOperation, IdWarehouse, IdProduct)" +
+                            " VALUES " +
+                            "(@Id, @TypeOperation, @Coint, @DataOperation, @IdWarehouse, @IdProduct)";
+                        connection.Execute(UpdaterOp, new { Id = newId, TypeOperation = TypeOperationTable, Coint = Coint, DataOperation = DateTime.Now.AddDays(0), IdWarehouse = IdWH, IdProduct = Product_NameId });
+                        // var insertTableUserQuery = @"DELETE FROM Products where ShopInforID = @IDS and Product_Status = 'В наличии' and Product_Name = @ProdName";
+
+                        // Замена для Чековой истории (не реализорованно)
+                        var insertTableUserQuery = @"UPDATE Products 
+SET Product_Status = 'Списан'
+WHERE ShopInforID = @IDS 
+  AND Product_Status = 'В наличии' 
+  AND Product_Name = @ProdName";
+                        connection.Execute(insertTableUserQuery, new { IDS = IdWH, ProdName = Product_Name });
+
+                        return 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message + ex.StackTrace);
+                        return -1;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                MessegeBox(ex.Message, "Ошибка!");
+                return -2;
             }
         }
 
