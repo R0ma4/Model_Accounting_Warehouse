@@ -3,35 +3,83 @@
   "WorkspaceRootPath": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|d:\\model_accounting_warehouse\\model_accounting_warehouse\\model_accounting_warehouse\\modul\\api_meneger_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\modul\\api_meneger_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagework.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagework.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagework.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagework.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|d:\\model_accounting_warehouse\\model_accounting_warehouse\\model_accounting_warehouse\\modul\\api_meneger_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\modul\\api_meneger_database.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pagetableproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pagetableproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagemainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagemainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\editshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\editshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\fieremployee.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\fieremployee.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\page404error.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\page404error.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pagetableproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pagetableproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagecreateshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagecreateshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pageload.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pageload.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\modul\\configurationreder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\modul\\configurationreder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagemainmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagemainmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\drop_product.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\fieremployee.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -42,28 +90,12 @@
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\editshop.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagemainmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagemainmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagework.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagework.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageadduser.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\pageeditproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\modulwindowredact\\redactpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,14 +110,6 @@
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagemainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagemainmenu.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pageload.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pageload.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\properties\\settings.settings||{6D2695F9-5365-4A78-89ED-F205C045BFE6}"
     },
@@ -94,32 +118,12 @@
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagecreateshop.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagecreateshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagecreateshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\modul\\classlofinrn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\modul\\classlofinrn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\pagedropwarehouse.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\modul\\configurationreder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\modul\\configurationreder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\fieremployee.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\fieremployee.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\model_accounting_warehouse\\page_prog\\work pageprog\\editshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{51F63B53-4DFA-40CB-A482-037A8CBE620B}|Model_Accounting_Warehouse\\Model_Accounting_Warehouse.csproj|solutionrelative:model_accounting_warehouse\\page_prog\\work pageprog\\editshop.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -129,7 +133,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 357,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 21,
           "Children": [
             {
               "$type": "Bookmark",
@@ -137,43 +141,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NavigationService.cs",
-              "DocumentMoniker": "C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs",
-              "ToolTip": "C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
-              "ViewState": "AgIAAIYEAAAAAAAAAAAswJAEAAADAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T21:07:10.703Z",
-              "EditorCaption": " [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]"
+              "DocumentIndex": 8,
+              "Title": "Page404Error.xaml",
+              "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Page404Error.xaml",
+              "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Page404Error.xaml",
+              "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Page404Error.xaml",
+              "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Page404Error.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-26T08:57:32.318Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 18,
+              "Title": "NavigationService.cs",
+              "DocumentMoniker": "C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs",
+              "ToolTip": "C:\\Users\\Asus\\AppData\\Local\\Temp\\.vsdbgsrc\\3f0e4cd428c0f377ab188887c63c57bf0360646eb49c19dc63082333182cbd42\\NavigationService.cs",
+              "ViewState": "AgIAAIYEAAAAAAAAAAAswJAEAAADAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T21:07:10.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Drop_Product.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-25T20:27:56.312Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T20:27:56.312Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "API_MENEGER_DATABASE.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Modul\\API_MENEGER_DATABASE.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Modul\\API_MENEGER_DATABASE.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Modul\\API_MENEGER_DATABASE.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Modul\\API_MENEGER_DATABASE.cs",
-              "ViewState": "AgIAAJQAAAAAAAAAAAAAwJ0AAABcAAAAAAAAAA==",
+              "ViewState": "AgIAAJwDAAAAAAAAAAAIwLoDAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T16:56:51.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 21,
               "Title": "EditShop.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\EditShop.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\EditShop.xaml.cs",
@@ -185,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 19,
               "Title": "Drop_Product.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml.cs",
@@ -193,12 +206,11 @@
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\Drop_Product.xaml.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAUwFAAAABCAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-25T20:55:25.481Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-25T20:55:25.481Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 20,
               "Title": "FierEmployee.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\FierEmployee.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\FierEmployee.xaml.cs",
@@ -210,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 9,
               "Title": "PageAddUser.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageAddUser.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageAddUser.xaml",
@@ -221,7 +233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 24,
               "Title": "RedactPage.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml.cs",
@@ -233,19 +245,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 25,
               "Title": "RedactPage.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\ModulWindowRedact\\RedactPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-24T21:10:02.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-24T21:10:02.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 26,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Properties\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Properties\\AssemblyInfo.cs",
@@ -257,7 +268,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 22,
               "Title": "PageEditProduct.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageEditProduct.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageEditProduct.xaml.cs",
@@ -269,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "PageTableProduct.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml",
@@ -280,7 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 27,
               "Title": "Settings.settings",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Properties\\Settings.settings",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Properties\\Settings.settings",
@@ -291,19 +302,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 14,
               "Title": "PageLoad.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageLoad.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageLoad.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageLoad.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageLoad.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-24T07:01:11.459Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-24T07:01:11.459Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 29,
               "Title": "ClassLofinrn.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Modul\\ClassLofinrn.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Modul\\ClassLofinrn.cs",
@@ -315,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "PageDropWareHouse.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml.cs",
@@ -327,43 +337,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 13,
               "Title": "PageDropWareHouse.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageDropWareHouse.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-23T16:48:58.549Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-23T16:48:58.549Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 4,
               "Title": "PageMainMenu.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-21T22:33:19.701Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T22:33:19.701Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 17,
               "Title": "PageMainMenu.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageMainMenu.xaml.cs",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAgwJsAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAqwKoAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-21T21:10:11.936Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 0,
               "Title": "PageWork.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml",
@@ -375,7 +383,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 7,
               "Title": "FierEmployee.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\FierEmployee.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\FierEmployee.xaml",
@@ -386,45 +394,44 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 15,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\MainWindow.xaml.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\MainWindow.xaml.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAIcAAAAAAAAAAAAqwJAAAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAASwIYAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-21T18:47:47.287Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T18:47:47.287Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 16,
               "Title": "ConfigurationReder.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Modul\\ConfigurationReder.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Modul\\ConfigurationReder.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Modul\\ConfigurationReder.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Modul\\ConfigurationReder.cs",
-              "ViewState": "AgIAAGcAAAAAAAAAAAAwwIABAAA5AAAAAAAAAA==",
+              "ViewState": "AgIAADoBAAAAAAAAAAAUwEQBAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T08:30:46.04Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "PageWork.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageWork.xaml.cs",
-              "ViewState": "AgIAACkAAAAAAAAAAAAWwEUAAAAUAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAwwE4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T14:06:39.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 6,
               "Title": "EditShop.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\EditShop.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\EditShop.xaml",
@@ -435,7 +442,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 10,
               "Title": "PageEditProduct.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageEditProduct.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageEditProduct.xaml",
@@ -446,19 +453,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 12,
               "Title": "PageCreateShop.xaml",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-21T18:27:05.837Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-21T18:27:05.837Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 23,
               "Title": "PageAddUser.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageAddUser.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageAddUser.xaml.cs",
@@ -470,7 +476,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 28,
               "Title": "PageCreateShop.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\PageCreateShop.xaml.cs",
@@ -482,13 +488,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "PageTableProduct.xaml.cs",
               "DocumentMoniker": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml.cs",
               "RelativeDocumentMoniker": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml.cs",
               "ToolTip": "D:\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml.cs",
               "RelativeToolTip": "Model_Accounting_Warehouse\\Page_Prog\\Work PageProg\\PageTableProduct.xaml.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAABgAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAwwD4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-16T16:45:22.725Z"
             }

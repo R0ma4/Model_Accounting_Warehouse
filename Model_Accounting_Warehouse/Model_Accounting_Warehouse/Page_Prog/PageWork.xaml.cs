@@ -73,8 +73,10 @@ namespace Model_Accounting_Warehouse.Page_Prog
                     main.pageDropProduct.Show();
                     break;
                 case "RedactProduct":
-                    ModulWindowRedact.RedactPage redactPage = new ModulWindowRedact.RedactPage();
-                    redactPage.ShowDialog();
+                    // ModulWindowRedact.RedactPage redactPage = new ModulWindowRedact.RedactPage();
+                    // redactPage.ShowDialog();
+                    dATABASEAPI.PromProduct(main.ID_WareHouse);
+                    WorkPage.Content = main.tableProduct;
                     break;
                 case "AddEmployeeInDataBase":
                      WorkPage.Content = main.pageAddUser;

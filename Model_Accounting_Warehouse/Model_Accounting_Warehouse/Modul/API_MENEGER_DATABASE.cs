@@ -2,6 +2,7 @@
 using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
@@ -373,12 +374,14 @@ namespace Model_Accounting_Warehouse.Modul
                 if(string.IsNullOrEmpty(Producticon) || string.IsNullOrEmpty(ProductName) || string.IsNullOrEmpty(ProductDescription) || string.IsNullOrEmpty(ProductCotigory) || string.IsNullOrEmpty(ProductStatus) || 
                   string.IsNullOrEmpty(ProductDeliveryDate) || string.IsNullOrEmpty(ProductPlace) || string.IsNullOrEmpty(ProductArePay) || string.IsNullOrEmpty(BayPrise) ) { return -7; }
 
+               
 
                 using (var connection = new SqlConnection(connectionString))
                 {
                     try
                     {
                         connection.Open();
+
 
 
 
@@ -408,15 +411,19 @@ namespace Model_Accounting_Warehouse.Modul
                                 ShopInforID = ShopInfor_ID
                             });
 
+
                         var RegisterAndPostavka =
                        @"INSERT INTO Operation (Id,TypeOperation,Coint,DataOperation,IdWarehouse,IdProduct)
                          VALUES 
                          (@Id,@TypeOperation,@Coint,@DataOperation,@IdWarehouse,@IdProduct)";
 
                         int IdOperation = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Operation");
-                        
-                        // Создал но забыл зачем... 
-                        int IdProduct = connection.Execute("SELECT ISNULL(MAX(Id), 0) From Products");
+
+                        int maxId = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(Id), 0) FROM Products");
+                        int newId = maxId;
+                                           
+
+                        Console.WriteLine($"IdProduct4: {newId}");
 
                         connection.Execute(RegisterAndPostavka,
                             new
@@ -426,7 +433,7 @@ namespace Model_Accounting_Warehouse.Modul
                                 Coint = 12,
                                 DataOperation = DateTime.Now.AddDays(0), // как-бы добовляем сегодняшную даду)
                                 IdWarehouse = ProductSupplier_Id,
-                                IdProduct = IdProduct,
+                                IdProduct = newId,
                             }
                             );
                         return 1;
@@ -484,7 +491,32 @@ namespace Model_Accounting_Warehouse.Modul
                 return -1;
             }
         }
+        public  int PromProduct(int IdWH) 
+        {
+            var connectionString = $"Server={main.Name_Server};Database={main.Name_Data_Base};Trusted_connection=True;TrustServerCertificate=True;";
 
+            using (var connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+
+                    connection.Open();
+
+                    // Замена для Чековой истории (не реализорованно)
+                    // var insertTableUserQuery = @"UPDATE Products SET Product_Status = 'В наличии' WHERE ShopInforID = @IDS AND Product_Status = 'Ожидается'"; (0 Записей задейсвованно)
+                    var insertTableUserQuery = @"UPDATE Products SET Product_Status = 'В наличии' WHERE ShopInforID = @IDS";
+                    connection.Execute(insertTableUserQuery, new { IDS = IdWH });
+
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message + ex.StackTrace);
+                    return -1;
+                }
+
+            }
+        }
         public int DropProduct(int IdWH, string Product_Name, int Product_NameId, int TypeOperation, int Coint)
         {
             try
@@ -514,8 +546,10 @@ namespace Model_Accounting_Warehouse.Modul
 
                         connection.Open();
 
-                        int maxId = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(Id), 0) FROM Operation");
+
+                        int maxId = connection.ExecuteScalar<int>("SELECT ISNULL(MAX(Id), 0) FROM Products");
                         int newId = maxId + 1;
+
 
                         var UpdaterOp = "INSERT INTO Operation(Id, TypeOperation, Coint, DataOperation, IdWarehouse, IdProduct)" +
                             " VALUES " +
@@ -968,17 +1002,22 @@ WHERE ShopInforID = @IDS
                 else if (loginExists && !passwordCorrect)
                 {
                     Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
+                   Application.Current.Shutdown()
+                        ;
+                    //ПРОДАМ ГАРАЖ 7 бибок
                     return -1;
                 }
                 else if (!loginExists)
                 {
                     Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
+                   
                     return -2;
                 }
                 else
                 {
                     
                     Console.WriteLine($"============================\nERROR: \nLOG_IN - loginExists {loginExists} | passwordCorrect {passwordCorrect}\nNameUserDiolog = {NameUserDiolog}");
+                   
                     return -5;
                 }
             }

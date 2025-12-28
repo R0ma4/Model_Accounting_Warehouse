@@ -46,6 +46,10 @@ namespace Model_Accounting_Warehouse.Page_Prog.Work_PageProg
 
         private void LoadProducts(char s) 
         {
+            if (ProductsGrid.Columns.Count > 0)
+            {
+                ProductsGrid.Columns.Clear();
+            }
             _database.NameBasaData = main.Name_Data_Base;
 
             ProductsGrid.Columns.Add(_database.Select_Table_Corrector(Modul.DataByse.Product, Modul.TypeData.Standart ,"Id", "ID продукта"));

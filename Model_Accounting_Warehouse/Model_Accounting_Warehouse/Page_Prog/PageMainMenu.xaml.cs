@@ -117,6 +117,10 @@ namespace Model_Accounting_Warehouse.Page_Prog
                     main.pageWork.FaierEmployeeInDataBase.IsEnabled = false;
                     main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, увальнение сотрудников";
                     break;
+                case "Кладовщик":
+                    main.pageWork.CompanyControl.IsEnabled = false;
+                    main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, для работы с пораметрами организации";
+                    break;
                 case "Кассир":
                     main.pageWork.AddEmployeeInDataBase.IsEnabled = false;
                     main.pageWork.AddEmployeeInDataBase.ToolTip = "У вас не доастаточно прав, на добовление новых сотрудников";
@@ -164,6 +168,7 @@ namespace Model_Accounting_Warehouse.Page_Prog
             Console.WriteLine(Post + "- Это прова вошетшего"); main.pageWork.ProfilMoment.Header = Post;
             main.PageControl.Content = main.pageWork;
 
+            if(Post == "Гость") {  }
 
 
             switch (KeyEnteProfil)
